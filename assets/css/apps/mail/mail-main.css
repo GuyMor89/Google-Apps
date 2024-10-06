@@ -1,0 +1,10 @@
+/* Basics */
+@import 'basics/mail-layout.css';
+
+/* Pages */
+@import 'pages/mail-index.css';
+@import 'pages/mail-details.css';
+
+/* Components */
+@import 'cmps/mail-preview.css';
+@import 'cmps/mail-filter.css';

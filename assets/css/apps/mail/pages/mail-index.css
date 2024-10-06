@@ -1,0 +1,58 @@
+.mail-container {
+    position: relative;
+
+    /* height: max-content; */
+
+    background-color: hsl(215, 68%, 97%);
+}
+
+.mail-header {
+    background-color: hsl(215, 68%, 97%);
+}
+
+.logo {
+    height: 5em;
+    width: 5em;
+
+    cursor: pointer;
+}
+
+.side-filter {
+    padding: 0.25em 0.5em;
+
+    font-size: 2em;
+    background-color: hsl(215, 68%, 97%);
+
+    cursor: pointer;
+}
+
+.side-filter>article {
+    height: fit-content;
+    width: fit-content;
+}
+
+.side-filter>article>i {
+    margin-block-end: 0.25em;
+    padding: 0.5em;
+
+    width: 65px;
+
+    border-radius: 9999px;
+    text-align: center;
+
+    transition: background-color 100ms, box-shadow 200ms;
+}
+
+.side-filter>article>i:hover {
+    background-color: #eee;
+}
+
+.fa-pencil {
+    background-color: #c2e7ff;
+}
+
+.fa-pencil:hover {
+    background-color: #c2e7ff !important;
+    box-shadow:
+        1px 1px 5px 3px rgba(0, 0, 0, 0.1);
+}

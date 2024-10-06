@@ -1,0 +1,23 @@
+/* Setup */
+
+@import '/assets/css/setup/typography.css';
+
+/* Basics */
+
+@import './basics/base.css';
+@import './basics/loader.css';
+@import './basics/modal.css';
+@import './basics/footer.css';
+@import './basics/layout.css';
+
+/* Pages */
+@import './pages/home.css';
+
+/* Apps */
+@import './apps/mail/mail-main.css';
+@import './apps//note/note-main.css';
+
+/* Components */
+
+@import './cmps/user-msg.css';
+@import './cmps/app-header.css';

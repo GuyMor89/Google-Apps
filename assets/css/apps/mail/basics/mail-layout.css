@@ -1,0 +1,122 @@
+.mail-container {
+    display: grid;
+    grid-template-columns: 1fr 12fr;
+    grid-template-rows: 1fr 12fr;
+}
+
+.search-input {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 10fr;
+
+    place-items: center;
+}
+
+.side-filter {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+
+    display: grid;
+}
+
+.side-filter>article {
+    display: grid;
+    place-items: center;
+}
+
+.mail-header {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 3fr;
+}
+
+.mail-list {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-auto-rows: 60px;
+}
+
+.no-mails {
+    display: grid;
+    justify-items: center;
+}
+
+.mail-preview {
+    display: grid;
+    grid-auto-flow: column;
+
+    grid-template-columns: 50px 50px 1.25fr 4fr;
+
+    align-items: center;
+}
+
+.mail-preview>i {
+    align-self: center;
+    justify-self: center
+}
+
+.mail-details {
+    display: grid;
+}
+
+.mail-icon-nav-container {
+    display: grid;
+    justify-items: start;
+}
+
+.mail-icon-nav {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1.25fr 1fr 1fr 1fr;
+    place-items: center;
+}
+
+.mail-icon-nav>i:first-of-type {
+    justify-self: start;
+}
+
+.mail-content {
+    display: grid;
+    grid-template-columns: repeat(3, max-content) ;
+    grid-template-rows: repeat(2, max-content) minmax(50px, max-content) max-content;
+}
+
+.mail-subject {
+   grid-column: 2/3; 
+   grid-row: 1/2;
+}
+
+.user-image {
+    grid-column: 1/2;
+    grid-row: 2/3;
+
+    justify-self: center;
+}
+
+.mail-from {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.mail-time {
+    grid-column: 3/4;
+    grid-row: 2/3;
+
+    justify-self: end;
+}
+
+.mail-body {
+    grid-column: 2/4;
+    grid-row: 3/4;
+}
+
+.mail-buttons {
+    grid-column: 2/3;
+    grid-row: 4/5;
+
+    display: grid;
+    grid-auto-flow: column;
+
+    justify-items: start;
+}
