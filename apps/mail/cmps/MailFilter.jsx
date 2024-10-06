@@ -23,7 +23,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
         <React.Fragment>
             <section className="mail-header">
                 <div className="logo" onClick={() => navigate('/mail/')}>
-                    <img src="../../../assets/img/gmail.png"></img>
+                    <img src="./assets/img/gmail.png"></img>
                 </div>
                 <article className="search-input">
                     <i className="fa-solid fa-magnifying-glass"></i>
