@@ -12,24 +12,26 @@ const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRo
 export function MailIndex() {
 
     const [mails, setMails] = useState(null)
-    const [filterBy, setFilterBy] = useState({ text: '', isInbox: true, isStarred: false, isTrash: false })
-    const [isLoading, setIsLoading] = useState(true)
+    const [filterBy, setFilterBy] = useState({ text: '', isInbox: true, isStarred: false, isTrash: false, isSent: false })
+    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading2, setIsLoading2] = useState(true)
 
-    const cleanFilter = useRef({ text: '', isInbox: true, isStarred: false, isTrash: false })
-
+    const cleanFilter = useRef({ text: '', isInbox: true, isStarred: false, isTrash: false, isSent: false })
     const params = useParams()
 
     useEffect(() => {
+        if (params.mailID) setIsLoading(true)
+        if (!params.mailID) setIsLoading2(true)
         changeFilterByParams()
         loadMails()
-    }, [filterBy, params.category])
+    }, [filterBy, params.category, params.mailID])
 
     function loadMails() {
         mailService.query(filterBy)
             .then(result => {
-                console.log('reloaded')
                 setMails(result)
                 setIsLoading(false)
+                setIsLoading2(false)
             })
     }
 
@@ -50,6 +52,14 @@ export function MailIndex() {
             <div className="progress" />
         </main>
     )
+
+    if (isLoading2) return (
+        <main className="mail-container">
+            <MailFilter filterBy={filterBy} changeFilterBy={changeFilterBy} />
+            <div className="progress2" />
+        </main>
+    )
+    
 
     return (
         <main className="mail-container">

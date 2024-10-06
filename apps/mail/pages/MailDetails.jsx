@@ -2,8 +2,6 @@ import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
-import { Loader } from "../../../cmps/Loader.jsx"
-
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
 
@@ -11,6 +9,7 @@ export function MailDetails({ mailID }) {
 
     const [mail, setMail] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [isLoading2, setIsLoading2] = useState(false)
 
     const topRef = useRef(null)
 
@@ -19,13 +18,15 @@ export function MailDetails({ mailID }) {
 
     useEffect(() => {
         mailService.get(mailID)
-            .then(setMail)
-            .then(() => setIsLoading(false))
+            .then(result => {
+                setMail(result)
+                setIsLoading(false)
+                setIsLoading2(false)
+            })
     }, [])
 
     useEffect(() => {
-        if (!isLoading && topRef.current)
-            topRef.current.focus()
+        if (!isLoading && topRef.current) topRef.current.focus()
     }, [isLoading])
 
     function parseBody(body) {
@@ -43,16 +44,16 @@ export function MailDetails({ mailID }) {
     }
 
     function moveToTrash() {
-        setIsLoading(true)
+        setIsLoading2(true)
         showSuccessMsg('E-Mail Moved to Trash')
         mailService.save({ ...mail, removedAt: Date.now() })
             .then(() => {
-                navigate('/mail/')
+                navigate(`/mail/${params.category}`)
             })
     }
 
     function handleUnread() {
-        setIsLoading(true)
+        setIsLoading2(true)
         showSuccessMsg('E-Mail Marked as Unread')
         mailService.save({ ...mail, isRead: false })
             .then(() => {
@@ -60,7 +61,8 @@ export function MailDetails({ mailID }) {
             })
     }
 
-    if (isLoading) return <div className="progress" />
+    if (isLoading) return <div className="progress2" />
+    if (isLoading2) return <div className="progress" />
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
 
@@ -70,7 +72,7 @@ export function MailDetails({ mailID }) {
                 <div className="mail-icon-nav">
                     <i onClick={() => navigate(`/mail/${params.category}`)} ref={topRef} tabIndex="0" className="fa-solid fa-arrow-left" aria-hidden={false}></i>
                     <i className="fa-regular fa-folder-closed"></i>
-                    <i onClick={() => moveToTrash()} className="fa-regular fa-trash-can"></i>
+                    <i onClick={moveToTrash} className="fa-regular fa-trash-can"></i>
                     <i onClick={handleUnread} className="fa-solid fa-envelope-circle-check" title="Mark Unread"></i>
                 </div>
             </article>
