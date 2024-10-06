@@ -43,7 +43,7 @@
 
 @font-face {
     font-family: Youtube-Regular;
-    src: url(/assets/fonts/YouTube-Regular.otf);
+    src: url('/assets/fonts/YouTube-Regular.otf');
 }
 
 @font-face {

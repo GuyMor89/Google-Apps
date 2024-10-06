@@ -79,7 +79,7 @@ export function MailDetails({ mailID }) {
             <article className="mail-details-content">
                 <div className="mail-details-subject">{subject}</div>
                 <div className="user-image">
-                    <img src="../../../assets/img/user.png"></img>
+                    <img src="./assets/img/user.png"></img>
                 </div>
                 <div className="mail-details-from">{from}</div>
                 <div className="mail-details-time">{utilService.formatDate(sentAt)}</div>
