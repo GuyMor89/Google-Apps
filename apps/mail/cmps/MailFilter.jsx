@@ -6,16 +6,18 @@ const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRo
 export function MailFilter({ filterBy, changeFilterBy }) {
 
     const [currentCategory, setCurrentCategory] = useState('inbox')
+    const [searchParams, setSearchParams] = useSearchParams()
 
     const navigate = useNavigate()
     const location = useLocation()
+    const params = useParams()
 
     useEffect(() => {
-        if (location.pathname === '/mail/starred') setCurrentCategory('starred')
-        else if (location.pathname === '/mail/trash') setCurrentCategory('trash')
-        else if (location.pathname === '/mail/sent') setCurrentCategory('sent')
+        if (params.category === 'starred') setCurrentCategory('starred')
+        else if (params.category === 'trash') setCurrentCategory('trash')
+        else if (params.category === 'sent') setCurrentCategory('sent')
         else setCurrentCategory('inbox')
-    }, [location])
+    }, [params])
 
     return (
         <React.Fragment>
@@ -31,7 +33,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
             <section className="side-filter">
                 <article className="icon-nav">
                     <i className="fa-solid fa-bars"></i>
-                    <i className="fa-solid fa-pencil"></i>
+                    <i className="fa-solid fa-pencil" onClick={() => setSearchParams({compose: ''})}></i>
                     <i className={currentCategory === 'inbox' ? "fa-solid fa-inbox blue chosen" : "fa-solid fa-inbox "} onClick={() => { setCurrentCategory('inbox'), navigate('/mail/inbox') }} title="Inbox"></i>
                     <i className={currentCategory === 'starred' ? "fa-solid fa-star gold chosen" : "fa-regular fa-star"} onClick={() => { setCurrentCategory('starred'), navigate('/mail/starred') }} title="Starred"></i>
                     <i className={currentCategory === 'sent' ? "fa-solid fa-paper-plane blue chosen" : "fa-regular fa-paper-plane"} onClick={() => { setCurrentCategory('sent'), navigate('/mail/sent') }} title="Sent"></i>

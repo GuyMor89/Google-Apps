@@ -18,15 +18,15 @@ export function UserMsg() {
       timeoutIdRef.current = setTimeout(() => {
         setMsg(null)
       }, 3000)
-  })
-  return unsubscribe
-}, [])
+    })
+    return unsubscribe
+  }, [])
 
-if (!msg) return <span></span>
-return (
-  <section className={`user-msg ${msg.type}`}>
-    <h4>{msg.txt}</h4>
-  </section>
-)
+  if (!msg) return <span></span>
+  return (
+    <section className={`user-msg ${msg.type}`}>
+      <h4>{msg.txt}</h4>
+    </section>
+  )
 }
 

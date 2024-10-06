@@ -5,6 +5,7 @@ import { AppHeader } from "./cmps/AppHeader.jsx"
 import { About } from "./pages/About.jsx"
 import { Home } from "./pages/Home.jsx"
 import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
+import { UserMsg } from "./cmps/UserMsg.jsx"
 
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 
@@ -17,9 +18,10 @@ export function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<Navigate to="/mail/inbox" />} />
                 <Route path="/mail/:category" element={<MailIndex />} />
-                <Route path="/mail/inbox/:mailID" element={<MailIndex />} />
+                <Route path="/mail/:category/:mailID" element={<MailIndex />} />
                 <Route path="/note" element={<NoteIndex />} />
             </Routes>
+            <UserMsg />
         </section>
     </Router>
 }

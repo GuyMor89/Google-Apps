@@ -1,11 +1,10 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
-import { defaultMails } from "../services/mails.js"
 
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailDetails } from "./MailDetails.jsx"
-import { Loader } from "../../../cmps/Loader.jsx"
+import { MailSend } from "./MailSend.jsx"
 
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
@@ -23,11 +22,12 @@ export function MailIndex() {
     useEffect(() => {
         changeFilterByParams()
         loadMails()
-    }, [filterBy, params])
+    }, [filterBy, params.category])
 
     function loadMails() {
         mailService.query(filterBy)
             .then(result => {
+                console.log('reloaded')
                 setMails(result)
                 setIsLoading(false)
             })
@@ -55,6 +55,7 @@ export function MailIndex() {
         <main className="mail-container">
             <MailFilter filterBy={filterBy} changeFilterBy={changeFilterBy} />
             {params.mailID ? <MailDetails mailID={params.mailID} /> : <MailList mails={mails} />}
+            <MailSend />
         </main>
     )
 }

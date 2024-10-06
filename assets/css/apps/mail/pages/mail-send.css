@@ -1,0 +1,122 @@
+.mail-send {
+    position: fixed;
+
+    bottom: 0;
+    right: 3em;
+
+    height: 500px;
+    width: 500px;
+
+    background-color: white;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+    border-radius: 8px 8px 0 0;
+}
+
+.mail-send-header {
+    padding: 0.2em;
+    padding-inline-start: 0.6em;
+    padding-block-end: 0.35em;
+    padding-inline-end: 1em;
+
+    background-color: hsl(215, 68%, 94%);
+    border-radius: 8px 8px 0 0;
+}
+
+.mail-send-header>span {
+    margin: 0 0.5em;
+
+    font-size: 1.15em;
+    font-family: Youtube-Regular;
+    font-weight: 600;
+}
+
+.mail-send-header>i {
+    padding: 0.5em;
+
+    font-size: 1.25em;
+    border-radius: 9999px;
+
+    cursor: pointer;
+
+    transition: background-color 200ms;
+}
+
+.mail-send-header>i:hover {
+    background-color: hsl(0, 0%, 93%);
+}
+
+#mail-send-to,
+#mail-send-subject {
+    margin: 0 1em;
+    padding: 0.6em 0;
+
+    height: 50px;
+
+    font-size: 1.15em;
+    font-family: Youtube-Regular;
+    caret-color: hsl(0, 0%, 60%);
+
+    border: 0;
+    border-block-end: 2px solid hsl(0, 0%, 90%);
+    outline: none;
+}
+
+#mail-send-body {
+    margin: 0 1.25em;
+    padding: 1em 0;
+
+    min-width: 460px;
+    min-height: 285px;
+
+    max-width: 410px;
+    max-height: 285px;
+
+    border: 0;
+
+    font-size: 1.25em;
+    caret-color: hsl(0, 0%, 60%);
+    /* border: 2px solid hsl(0, 0%, 90%); */
+
+    outline: none;
+    resize: none
+}
+
+.mail-send-buttons {
+   
+}
+
+.mail-send-buttons>div {
+    padding: 0.5em 1.15em;
+    margin: 0.7em 1em;
+
+    font-size: 1.15em;
+    font-family: Youtube-Regular;
+
+    background-color: hsl(214, 82%, 51%);
+    border-radius: 9999px;
+    color: white;
+
+    cursor: pointer;
+
+    transition: box-shadow 100ms;
+}
+
+.mail-send-buttons>div:hover {
+    box-shadow: 0 1px 2px 0 rgba(26,115,232,.45),0 1px 3px 1px rgba(26,115,232,.3);
+}
+
+.mail-send-buttons>i {
+    padding: 0.5em;
+    margin: 0 1em;
+
+    font-size: 1.5em;
+    border-radius: 9999px;
+
+    cursor: pointer;
+
+    transition: background-color 200ms;
+}
+
+.mail-send-buttons>i:hover {
+    background-color: hsl(0, 0%, 93%);
+}

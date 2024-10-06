@@ -15,7 +15,7 @@ export function MailList({ mails }) {
 
     useEffect(() => {
         setIsLoading(true) 
-    }, [params])
+    }, [params.category])
 
     useEffect(() => {
         if (params.category === 'starred') setNoMailType('starred')

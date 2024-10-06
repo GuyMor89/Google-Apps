@@ -22,6 +22,7 @@ function query(filterBy = {}) {
             }
             if (filterBy.isInbox) {
                 mails = mails.filter(mail => !mail.removedAt)
+                mails = mails.filter(mail => mail.to === 'user@gmail.com')
             }
             if (filterBy.isStarred) {
                 mails = mails.filter(mail => mail.isStarred === true)

@@ -10,6 +10,7 @@ export function MailPreview({ mail }) {
     const hasMounted = useRef(false)
 
     const navigate = useNavigate()
+    const params = useParams()
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
 
@@ -33,7 +34,7 @@ export function MailPreview({ mail }) {
     }
 
     return (
-        <div className={isRead ? 'mail-preview read' : 'mail-preview'} onClick={() => { editMail('read'), navigate(`/mail/inbox/${mail.id}`) }}>
+        <div className={isRead ? 'mail-preview read' : 'mail-preview'} onClick={() => { editMail('read'), navigate(`/mail/${params.category}/${mail.id}`) }}>
             <i onClick={() => setIsChecked(!isChecked)} className={isChecked ? "fa-regular fa-square-check" : "fa-regular fa-square faint"}></i>
             <i onClick={handleIconClicks} className={starred ? "fa-solid fa-star gold" : "fa-regular fa-star faint"}></i>
             <h3 className={isRead ? 'read' : ''}>{from}</h3>

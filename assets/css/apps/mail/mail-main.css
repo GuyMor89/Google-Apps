@@ -4,6 +4,7 @@
 /* Pages */
 @import 'pages/mail-index.css';
 @import 'pages/mail-details.css';
+@import 'pages/mail-send.css';
 
 /* Components */
 @import 'cmps/mail-preview.css';
