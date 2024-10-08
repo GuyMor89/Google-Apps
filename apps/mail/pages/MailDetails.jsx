@@ -8,8 +8,7 @@ const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRo
 export function MailDetails({ mailID }) {
 
     const [mail, setMail] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const [isLoading2, setIsLoading2] = useState(false)
+    const [isLoading, setIsLoading] = useState({ first: false, second: true })
 
     const topRef = useRef(null)
 
@@ -20,8 +19,7 @@ export function MailDetails({ mailID }) {
         mailService.get(mailID)
             .then(result => {
                 setMail(result)
-                setIsLoading(false)
-                setIsLoading2(false)
+                setIsLoading({ first: false, second: false })
             })
     }, [])
 
@@ -36,7 +34,7 @@ export function MailDetails({ mailID }) {
                 if (line.trim() === '') return <br key={idx} />
                 return (
                     <p key={idx}>
-                        {line.trim()}
+                        {line.trim()} // Conver to Pre
                         {idx < body.split('\n').length - 1 && <br />}
                     </p>
                 )
@@ -44,7 +42,7 @@ export function MailDetails({ mailID }) {
     }
 
     function moveToTrash() {
-        setIsLoading2(true)
+        setIsLoading({ ...isLoading, first: true })
         showSuccessMsg('E-Mail Moved to Trash')
         mailService.save({ ...mail, removedAt: Date.now() })
             .then(() => {
@@ -52,8 +50,17 @@ export function MailDetails({ mailID }) {
             })
     }
 
+    function moveToInbox() {
+        setIsLoading({ ...isLoading, first: true })
+        showSuccessMsg('E-Mail Moved to Inbox')
+        mailService.save({ ...mail, removedAt: null })
+            .then(() => {
+                navigate(`/mail/${params.category}`)
+            })
+    }
+
     function handleUnread() {
-        setIsLoading2(true)
+        setIsLoading({ ...isLoading, first: true })
         showSuccessMsg('E-Mail Marked as Unread')
         mailService.save({ ...mail, isRead: false })
             .then(() => {
@@ -61,8 +68,8 @@ export function MailDetails({ mailID }) {
             })
     }
 
-    if (isLoading) return <div className="progress2" />
-    if (isLoading2) return <div className="progress" />
+    if (isLoading.first) return <div className="progress" />
+    if (isLoading.second) return <div className="progress2" />
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
 
@@ -72,7 +79,7 @@ export function MailDetails({ mailID }) {
                 <div className="mail-icon-nav">
                     <i onClick={() => navigate(`/mail/${params.category}`)} ref={topRef} tabIndex="0" className="fa-solid fa-arrow-left" aria-hidden={false}></i>
                     <i className="fa-regular fa-folder-closed"></i>
-                    <i onClick={moveToTrash} className="fa-regular fa-trash-can"></i>
+                    <i onClick={params.category === 'trash' ? moveToInbox : moveToTrash} className={params.category === 'trash' ? "fa-solid fa-trash-can-arrow-up" : "fa-regular fa-trash-can"}></i>
                     <i onClick={handleUnread} className="fa-solid fa-envelope-circle-check" title="Mark Unread"></i>
                 </div>
             </article>

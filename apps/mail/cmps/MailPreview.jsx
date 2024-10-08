@@ -7,8 +7,9 @@ export function MailPreview({ mail }) {
 
     const [starred, setStarred] = useState(mail.isStarred)
     const [isChecked, setIsChecked] = useState(null)
-    const hasMounted = useRef(false)
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const hasMounted = useRef(false)
     const navigate = useNavigate()
     const params = useParams()
 
@@ -34,10 +35,10 @@ export function MailPreview({ mail }) {
     }
 
     return (
-        <div className={isRead ? 'mail-preview read' : 'mail-preview'} onClick={() => { editMail('read'), navigate(`/mail/${params.category}/${mail.id}`) }}>
+        <div className={isRead ? 'mail-preview read' : 'mail-preview'} onClick={() => { params.category === 'draft' ? setSearchParams({ compose: mail.id }) : (editMail('read'), navigate(`/mail/${params.category}/${mail.id}`)) }}>
             <i onClick={() => setIsChecked(!isChecked)} className={isChecked ? "fa-regular fa-square-check" : "fa-regular fa-square faint"}></i>
             <i onClick={handleIconClicks} className={starred ? "fa-solid fa-star gold" : "fa-regular fa-star faint"}></i>
-            <h3 className={isRead ? 'read' : ''}>{from}</h3>
+            <h3 className={isRead ? 'read' : ''}>{from === 'user@gmail.com' ? 'me' : from}</h3>
             <h4 className={isRead ? 'read' : ''}>{subject} - <span>{body}</span></h4>
         </div>
     )

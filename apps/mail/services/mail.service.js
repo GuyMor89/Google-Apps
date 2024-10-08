@@ -9,6 +9,8 @@ export const mailService = {
     get,
     remove,
     save,
+    getDefaultFilter,
+    getEmptyDraft,
     getFilterFromSearchParams,
     cleanFilter
 }
@@ -26,20 +28,39 @@ function query(filterBy = {}) {
             }
             if (filterBy.isStarred) {
                 mails = mails.filter(mail => mail.isStarred === true)
-            }
-            if (filterBy.isTrash) {
-                mails = mails.filter(mail =>  mail.removedAt)
+                mails = mails.filter(mail => !mail.removedAt)
             }
             if (filterBy.isSent) {
                 mails = mails.filter(mail => mail.from === 'user@gmail.com')
+                mails = mails.filter(mail => mail.sentAt)
+                mails = mails.filter(mail => !mail.removedAt)
+
+            }
+            if (filterBy.isDraft) {
+                mails = mails.filter(mail => mail.sentAt === null)
+            }
+            if (filterBy.isTrash) {
+                mails = mails.filter(mail => mail.removedAt)
+            }
+            if (filterBy.all) {
+                mails = mails.filter(mail => mail.sentAt)
+                mails = mails.filter(mail => !mail.removedAt)
             }
             if (filterBy.text) {
                 const regex = new RegExp(filterBy.text, 'i')
-                mails = mails.filter(mail => regex.test(mail.subject) 
-                || regex.test(mail.from)
-                || regex.test(mail.body))
+                mails = mails.filter(mail => regex.test(mail.subject)
+                    || regex.test(mail.from)
+                    || regex.test(mail.body))
             }
-            return mails
+            const amountOfMails = mails.length
+            if (filterBy.page) {
+                const { currentPage, amountPerPage } = filterBy.page
+                const pageStart = (currentPage * amountPerPage)
+                const pageEnd = ((currentPage * amountPerPage) + amountPerPage - 1)
+
+                mails = mails.filter((mail, idx) => idx >= pageStart && idx <= pageEnd)
+            }
+            return {mails, amountOfMails}
         })
 }
 
@@ -59,8 +80,26 @@ function save(mail) {
     }
 }
 
+function getDefaultFilter() {
+    return { text: '', page: { currentPage: 0, amountPerPage: 15 }, isInbox: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false }
+}
+
+function getEmptyDraft() {
+    return {
+        createdAt: Date.now(),
+        subject: "",
+        body: "",
+        isRead: false,
+        sentAt: null,
+        isStarred: false,
+        isArchived: false,
+        from: 'user@gmail.com',
+        to: ""
+    }
+}
+
 function getFilterFromSearchParams(searchParams) {
-    if (searchParams.size === 0) return {text: ''}
+    if (searchParams.size === 0) return { text: '' }
 
     const newFilter = {}
     for (let [key, value] of searchParams.entries()) {

@@ -43,12 +43,12 @@
 
 @font-face {
     font-family: Youtube-Regular;
-    src: url('/assets/fonts/YouTube-Regular.otf');
+    src: url(/assets/fonts/YouTube-Regular.otf);
 }
 
 @font-face {
     font-family: Roboto-Regular;
-    src: url(/assets/fonts/Roboto-Regular.ttf);
+    src: url(../../fonts/Roboto-Regular.ttf);
 }
 
 @font-face {

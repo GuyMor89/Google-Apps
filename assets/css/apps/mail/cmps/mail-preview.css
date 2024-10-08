@@ -1,6 +1,7 @@
 .mail-list {
-    padding: 2em 0;
-    margin-inline-end: 1em;
+    padding: 1.5em 0;
+    padding-block-end: 2em;
+    margin-block-end: 2em;
 
     height: max-content;
 
@@ -10,25 +11,77 @@
         1px 1px 5px 0px rgba(0, 0, 0, 0.01);
 }
 
-.no-mails {
-    margin: auto;
+.mail-list-nav {
+    margin-block-end: 1.3em;
 }
 
-.no-mails>h2 {
+.mail-list-buttons,
+.mail-list-counter {
+    font-size: 1.5em;
+}
+
+.mail-list-buttons {
+    margin: 0 0.55em;
+    font-size: 1.55em;
+}
+
+.mail-list-buttons>i,
+.mail-list-counter>i {
+    padding: 0.5em;
+
+    min-width: 50px;
+
+    text-align: center;
+    border-radius: 9999px;
+
+    cursor: pointer;
+
+    transition: background-color 200ms;
+}
+
+.mail-list-buttons>i:hover,
+.mail-list-counter>i:hover {
+    background-color: hsl(0, 0%, 93%);
+}
+
+.mail-list-counter {
+    margin: 0 0.55em;
+}
+
+.mail-list-counter>span {
+    font-family: OpenSans-Regular;
+    font-size: 0.8em;
+
+    color: hsl(0, 0%, 40%);
+}
+
+.no-mails-title,
+.no-mails-subject,
+.no-mails-body {
     margin: 0;
 
     text-align: center;
+    font-size: 1.25em;
     font-weight: 400;
+    font-family: Roboto-Bold;
+}
+
+.no-mails-title {
+    font-size: 1.5em;
+}
+
+.no-mails-subject,
+.no-mails-body {
     font-family: Roboto-Regular;
 }
 
 .read {
     font-family: Roboto-Thin !important;
-    background-color: #f2f6fc !important;
+    background-color: hsl(215, 68%, 95%) !important;
 }
 
 .faint {
-    opacity: 40%;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 .gold {
@@ -36,25 +89,28 @@
 }
 
 .mail-preview {
-    /* padding: 1em 0.75em; */
+    padding: 0 0.75em;
 
-    height: 3.75em;
+    /* height: 100%; */
 
     border-block-start: 2px solid hsl(0, 0%, 90%);
     border-block-end: 2px solid hsl(0, 0%, 90%);
     border-inline: 2px solid #f2f6fc;
     border-radius: 3px;
+    box-shadow: none;
 
     font-family: Roboto-Regular;
 
     cursor: pointer;
+
+    transition: border 100ms, box-shadow 100ms;
 }
 
 .mail-preview:hover {
     border-inline: 2px solid hsl(0, 0%, 90%);
-    border-block-end: 3.5px solid hsl(0, 0%, 70%);
+    border-block-end: 2px solid hsl(0, 0%, 50%);
     box-shadow:
-        1px 1px 5px 1px rgba(0, 0, 0, 0.1);
+        2px 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
 .mail-preview:first-of-type,
@@ -98,4 +154,33 @@
 
 .mail-preview>h4>span {
     font-family: Roboto-Thin;
+}
+
+.data-usage {
+    margin-block-start: 1.5em;
+    margin-inline-start: 1.5em;
+
+}
+
+.data-usage-stats,
+.last-activity {
+    margin-block-start: 0.75em;
+
+    font-size: 1.1em;
+    font-family: OpenSans-Regular;
+
+    color: hsl(0, 0%, 40%);
+}
+
+.data-usage-bar {
+    height: 10px;
+    width: 300px;
+
+    background-color: #eee;
+    border-radius: 8px;
+}
+
+.last-activity {
+    margin-block-start: 1.5em;
+    margin-inline-end: 1.5em;
 }

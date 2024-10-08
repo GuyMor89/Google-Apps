@@ -41,6 +41,34 @@ export const defaultMails = [
         to: 'user@gmail.com'
     },
     {
+        id: 'inx66s',
+        createdAt: 1714078801270,
+        subject: 'Pot Luck',
+        body: `Hi Dad,
+
+I hope this email finds you well! I wanted to reach out and discuss the upcoming potluck we’ve been planning for next weekend. I’m really looking forward to it and think it could be a great opportunity for everyone to come together and enjoy some good food and company.
+
+As we start to finalize the details, I thought it would be helpful to coordinate who’s bringing what. I plan to make my famous chili, which I think everyone will love. It’s always a hit at gatherings! If you’re interested, you could bring your delicious cornbread to go along with it. I remember how much everyone enjoyed that last time. 
+
+Also, we should think about drinks and any other side dishes. Maybe we can ask the family if anyone wants to bring a salad or dessert? I can send out a quick message to the group and see what everyone wants to contribute. It’ll be nice to have a variety of dishes to enjoy. 
+
+Let me know what you think about the cornbread idea and if you have any other dishes in mind. I want to make sure we have plenty of food to share and enjoy. 
+
+Looking forward to catching up with everyone and having a great time at the potluck. If you have any other ideas or suggestions for the event, feel free to share! 
+
+Take care, and I’ll talk to you soon!
+
+Best,
+John Snow`,
+        isRead: false,
+        sentAt: 1714078811103,
+        isStarred: false,
+        isArchived: false,
+        removedAt: null,
+        from: 'John.S@hotmail.com',
+        to: 'user@gmail.com'
+    },
+    {
         id: 'TK91tS',
         createdAt: 1721217376719,
         subject: 'Catch Up Soon',

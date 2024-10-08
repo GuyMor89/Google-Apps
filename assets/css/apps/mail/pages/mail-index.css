@@ -1,8 +1,6 @@
 .mail-container {
     position: relative;
-
-    /* height: max-content; */
-
+    height: max-content;
     background-color: hsl(215, 68%, 97%);
 }
 
@@ -22,8 +20,6 @@
 
     font-size: 2em;
     background-color: hsl(215, 68%, 97%);
-
-    cursor: pointer;
 }
 
 .side-filter>article {
@@ -39,6 +35,8 @@
 
     border-radius: 9999px;
     text-align: center;
+
+    cursor: pointer;
 
     transition: background-color 100ms, box-shadow 200ms;
 }
