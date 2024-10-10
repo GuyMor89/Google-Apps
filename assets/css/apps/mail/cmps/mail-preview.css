@@ -1,6 +1,7 @@
 .mail-list {
     padding-block-end: 2em;
     margin-block-end: 2em;
+    margin-inline-end: 1em;
 
     height: max-content;
 
@@ -88,10 +89,10 @@
     font-weight: 600;
 }
 
-.mail-list-filter-primary,
-.mail-list-filter-promotions,
-.mail-list-filter-social {
-    height: 90px;
+.mail-list-tabs-primary,
+.mail-list-tabs-promotions,
+.mail-list-tabs-social {
+    height: 100px;
 
     font-size: 1.4em;
     color: hsl(0, 0%, 15%);
@@ -99,35 +100,37 @@
     cursor: pointer;
 }
 
-.mail-list-filter-primary:hover,
-.mail-list-filter-promotions:hover,
-.mail-list-filter-social:hover {
+.mail-list-tabs-primary:hover,
+.mail-list-tabs-promotions:hover,
+.mail-list-tabs-social:hover {
     background-color: hsl(0, 0%, 96%);
 }
 
-.mail-list-filter-primary.chosen,
-.mail-list-filter-promotions.chosen
-.mail-list-filter-social.chosen {
+.mail-list-tabs-primary.chosen,
+.mail-list-tabs-promotions.chosen
+.mail-list-tabs-social.chosen {
     background-color: hsl(0, 0%, 96%);
 }
 
-.mail-list-filter-primary>i,
-.mail-list-filter-promotions>i,
-.mail-list-filter-social>i {
+.mail-list-tabs-primary>i,
+.mail-list-tabs-promotions>i,
+.mail-list-tabs-social>i {
     margin-block-start: 0.2em;
     margin-inline-start: 1.25em;
+    margin-inline-end: 1em;
 }
 
-.mail-list-filter-primary>span,
-.mail-list-filter-promotions>span,
-.mail-list-filter-social>span {
+.mail-list-tabs-primary>span,
+.mail-list-tabs-promotions>span,
+.mail-list-tabs-social>span {
     font-family: Youtube-Regular;
     font-weight: 600;
 }
 
-.mail-list-filter-bar.chosen {
+.mail-list-tabs-bar.chosen {
     height: 4px;
     width: 90%;
+    border-radius: 8px;
 
     background-color: hsl(214, 82%, 40%);
 }

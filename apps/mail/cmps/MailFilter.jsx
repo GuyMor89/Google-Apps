@@ -6,6 +6,7 @@ const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRo
 export function MailFilter({ filterBy, changeFilterBy }) {
 
     const [currentCategory, setCurrentCategory] = useState('inbox')
+    const [menuOpen, setMenuOpen] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
 
     const navigate = useNavigate()
@@ -21,6 +22,13 @@ export function MailFilter({ filterBy, changeFilterBy }) {
         else setCurrentCategory('inbox')
     }, [params])
 
+    function handleSideFilterClasses(category) {
+        let categoryClass = 'filter-icon-nav-category'
+        if (currentCategory === category) categoryClass += ' chosen'
+        if (menuOpen) categoryClass += ' expanded'
+        return categoryClass
+    }
+
     return (
         <React.Fragment>
             <section className="mail-header">
@@ -33,15 +41,60 @@ export function MailFilter({ filterBy, changeFilterBy }) {
                 </article>
             </section>
             <section className="side-filter">
-                <article className="icon-nav">
-                    <i className="fa-solid fa-bars"></i>
-                    <i className="fa-solid fa-pencil" onClick={() => setSearchParams({ compose: '' })}></i>
-                    <i className={currentCategory === 'inbox' ? "fa-solid fa-inbox chosen" : "fa-solid fa-inbox"} onClick={() => { setCurrentCategory('inbox'), navigate('/mail/inbox') }} title="Inbox"></i>
-                    <i className={currentCategory === 'starred' ? "fa-solid fa-star gold chosen" : "fa-regular fa-star"} onClick={() => { setCurrentCategory('starred'), navigate('/mail/starred') }} title="Starred"></i>
-                    <i className={currentCategory === 'sent' ? "fa-solid fa-paper-plane chosen" : "fa-regular fa-paper-plane"} onClick={() => { setCurrentCategory('sent'), navigate('/mail/sent') }} title="Sent"></i>
-                    <i className={currentCategory === 'draft' ? "fa-solid fa-file chosen" : "fa-regular fa-file"} onClick={() => { setCurrentCategory('draft'), navigate('/mail/draft') }} title="Drafts"></i>
-                    <i className={currentCategory === 'trash' ? "fa-solid fa-trash-can chosen" : "fa-regular fa-trash-can"} onClick={() => { setCurrentCategory('trash'), navigate('/mail/trash') }} title="Trash"></i>
-                    <i className={currentCategory === 'all' ? "fa-solid fa-envelope chosen" : "fa-regular fa-envelope"} onClick={() => { setCurrentCategory('all'), navigate('/mail/all') }} title="All Mail"></i>
+                <article className="filter-icon-nav">
+                    <i className="fa-solid fa-bars" onClick={() => setMenuOpen(!menuOpen)}></i>
+                    <div className={`${handleSideFilterClasses('compose')} compose`} onClick={() => setSearchParams({ compose: '' }) } title="Compose">
+                        <i className="fa-solid fa-pencil"></i>
+                        {menuOpen && <h3>Compose</h3>}
+                    </div>
+                    <div className={handleSideFilterClasses('inbox')} onClick={() => { setCurrentCategory('inbox'), navigate('/mail/inbox') }} title="Inbox">
+                        <i className="fa-solid fa-inbox"></i>
+                        {menuOpen &&
+                            <React.Fragment>
+                                <h3>Inbox</h3>
+                                <span>50</span>
+                            </React.Fragment>}
+                    </div>
+                    <div className={handleSideFilterClasses('starred')} onClick={() => { setCurrentCategory('starred'), navigate('/mail/starred') }} title="Starred">
+                        <i className={currentCategory === 'starred' ? "fa-solid fa-star gold" : "fa-regular fa-star"}></i>
+                        {menuOpen &&
+                            <React.Fragment>
+                                <h3>Starred</h3>
+                                <span></span>
+                            </React.Fragment>}
+                    </div>
+                    <div className={handleSideFilterClasses('sent')} onClick={() => { setCurrentCategory('sent'), navigate('/mail/sent') }} title="Sent">
+                        <i className={currentCategory === 'sent' ? "fa-solid fa-paper-plane" : "fa-regular fa-paper-plane"}></i>
+                        {menuOpen &&
+                            <React.Fragment>
+                                <h3>Sent</h3>
+                                <span></span>
+                            </React.Fragment>}
+                    </div>
+                    <div className={handleSideFilterClasses('draft')} onClick={() => { setCurrentCategory('draft'), navigate('/mail/draft') }} title="Drafts">
+                        <i className={currentCategory === 'draft' ? "fa-solid fa-file" : "fa-regular fa-file"}></i>
+                        {menuOpen &&
+                            <React.Fragment>
+                                <h3>Drafts</h3>
+                                <span></span>
+                            </React.Fragment>}
+                    </div>
+                    <div className={handleSideFilterClasses('trash')} onClick={() => { setCurrentCategory('trash'), navigate('/mail/trash') }} title="Trash">
+                        <i className={currentCategory === 'trash' ? "fa-solid fa-trash-can" : "fa-regular fa-trash-can"}></i>
+                        {menuOpen &&
+                            <React.Fragment>
+                                <h3>Trash</h3>
+                                <span></span>
+                            </React.Fragment>}
+                    </div>
+                    <div className={handleSideFilterClasses('all')} onClick={() => { setCurrentCategory('all'), navigate('/mail/all') }} title="All Mail">
+                        <i className={currentCategory === 'all' ? "fa-solid fa-envelope" : "fa-regular fa-envelope"}></i>
+                        {menuOpen &&
+                            <React.Fragment>
+                                <h3>All Mail</h3>
+                                <span></span>
+                            </React.Fragment>}
+                    </div>
                 </article>
             </section>
         </React.Fragment>

@@ -1,6 +1,6 @@
 .mail-container {
     display: grid;
-    grid-template-columns: 100px 1130px;
+    grid-template-columns: 1fr 11.4fr;
     grid-template-rows: 80px max-content;
 }
 
@@ -23,9 +23,25 @@
     display: grid;
 }
 
-.side-filter>article {
+.filter-icon-nav {
     display: grid;
     place-items: center;
+}
+
+.filter-icon-nav-category {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    place-items: center;
+}
+
+.filter-icon-nav-category>h3 {
+    justify-self: start;
+}
+
+.fa-bars {
+    justify-self: start;
 }
 
 .mail-header {
@@ -89,7 +105,7 @@
     align-items: center;
 }
 
-.mail-list-filter {
+.mail-list-tabs {
     grid-row: 2/4;
     grid-column: 1 / -1;
 
@@ -98,18 +114,19 @@
     grid-template-columns: 1fr 1fr 1fr;
 
     align-self: end;
+    justify-self: start;
 }
 
-.mail-list-filter>div {
+.mail-list-tabs>div {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 6fr;
     grid-template-rows: 1fr max-content;
 
     align-items: center;
 }
 
-.mail-list-filter-bar {
+.mail-list-tabs-bar {
     grid-row: 2/3;
     grid-column: 1 / -1;
     

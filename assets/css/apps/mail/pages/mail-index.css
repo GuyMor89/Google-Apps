@@ -15,6 +15,11 @@
     cursor: pointer;
 }
 
+.expanded {
+    font-size: 0.75em;
+    width: 200px !important;
+}
+
 .side-filter {
     padding: 0.25em 0.5em;
 
@@ -23,12 +28,54 @@
     color: hsl(0, 0%, 15%);
 }
 
-.side-filter>article {
+.filter-icon-nav {
     height: fit-content;
-    width: fit-content;
+    width: max-content;
 }
 
-.side-filter>article>i {
+.filter-icon-nav-category {
+    padding: 0.5em;
+
+    width: 65px;
+
+    border-radius: 9999px;
+
+    cursor: pointer;
+
+    transition: background-color 100ms, width 300ms;
+}
+
+.filter-icon-nav-category:hover {
+    background-color: hsl(0, 0%, 90%);
+}
+
+.filter-icon-nav-category>i {
+    margin-inline-end: 0.5em;
+}
+
+.filter-icon-nav-category>.fa-file {
+    margin-inline-start: 0.1em;
+}
+
+.filter-icon-nav-category>.fa-trash-can {
+    margin-inline-start: 0.05em;
+}
+
+.filter-icon-nav-category.expanded>.fa-envelope {
+    margin-inline-start: 0.1em;
+}
+
+.filter-icon-nav-category>h3,
+.filter-icon-nav-category>span {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+.filter-icon-nav-category>h3 {
+    width: 75px;
+}
+
+.filter-icon-nav>i {
     margin-block-end: 0.25em;
     padding: 0.5em;
 
@@ -42,11 +89,12 @@
     transition: background-color 100ms, box-shadow 200ms;
 }
 
-.side-filter>article>i:hover {
+.filter-icon-nav>i:hover {
     background-color: #eee;
 }
 
-.fa-pencil {
+.compose {
+    margin-block-end: 0.25em;
     background-color: #c2e7ff;
 }
 

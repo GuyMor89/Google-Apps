@@ -88,21 +88,21 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
             </div>
             {
                 isInbox &&
-                <div className="mail-list-filter">
-                    <div className={isPrimary ? "mail-list-filter-primary blue chosen" : "mail-list-filter-primary chosen"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                <div className="mail-list-tabs">
+                    <div className={isPrimary ? "mail-list-tabs-primary blue chosen" : "mail-list-tabs-primary chosen"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
                         <i className="fa-solid fa-inbox"></i>
                         <span>Primary</span>
-                        <div className={isPrimary ? "mail-list-filter-bar chosen" : "mail-list-filter-bar"}></div>
+                        <div className={isPrimary ? "mail-list-tabs-bar chosen" : "mail-list-tabs-bar"}></div>
                     </div>
-                    <div className={isPromotions ? "mail-list-filter-promotions blue" : "mail-list-filter-promotions"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: true, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                    <div className={isPromotions ? "mail-list-tabs-promotions blue" : "mail-list-tabs-promotions"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: true, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
                         <i className="fa-solid fa-tag"></i>
                         <span>Promotions</span>
-                        <div className={isPromotions ? "mail-list-filter-bar chosen" : "mail-list-filter-bar"}></div>
+                        <div className={isPromotions ? "mail-list-tabs-bar chosen" : "mail-list-tabs-bar"}></div>
                     </div>
-                    <div className={isSocial ? "mail-list-filter-social blue" : "mail-list-filter-social"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: false, isSocial: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                    <div className={isSocial ? "mail-list-tabs-social blue" : "mail-list-tabs-social"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: false, isSocial: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
                         <i className="fa-solid fa-user-group"></i>
                         <span>Social</span>
-                        <div className={isSocial ? "mail-list-filter-bar chosen" : "mail-list-filter-bar"}></div>
+                        <div className={isSocial ? "mail-list-tabs-bar chosen" : "mail-list-tabs-bar"}></div>
                     </div>
                 </div>
             }
