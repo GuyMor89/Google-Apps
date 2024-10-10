@@ -64,17 +64,30 @@ function formatDate(ms) {
     const date = new Date(ms)
 
     // Format the date and time
-    const options = {
+    const dateOptions = {
         month: 'short',
         day: 'numeric',
         year: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
         hour12: true
-    };
+    }
 
-    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+    const shortDateOptions = {
+        month: 'short',
+        day: 'numeric'
+    }
 
+    const hourOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    }
+
+    const formattedDate = new Intl.DateTimeFormat('en-US', dateOptions).format(date)
+    const formattedShortDate = new Intl.DateTimeFormat('en-US', shortDateOptions).format(date)
+    const formattedHour = new Intl.DateTimeFormat('en-US', hourOptions).format(date)
+    
     // Calculate relative time (e.g., "1 day ago")
     const now = new Date()
     const timeDifference = now - date
@@ -97,7 +110,7 @@ function formatDate(ms) {
         relativeTime = `just now`
     }
 
-    return `${formattedDate} (${relativeTime})`
+    return {shortDate: formattedShortDate, shortHour: formattedHour, formattedDate, relativeTime}
 }
 
 function debounce(func, delay) {

@@ -1,3 +1,4 @@
+import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 
 const { useState, useEffect, useRef } = React
@@ -14,6 +15,8 @@ export function MailPreview({ mail }) {
     const params = useParams()
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
+    const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(sentAt)
+    const todayDate = utilService.formatDate(Date.now()).shortDate 
 
     useEffect(() => {
 
@@ -40,6 +43,7 @@ export function MailPreview({ mail }) {
             <i onClick={handleIconClicks} className={starred ? "fa-solid fa-star gold" : "fa-regular fa-star faint"}></i>
             <h3 className={isRead ? 'read' : ''}>{from === 'user@gmail.com' ? 'me' : from}</h3>
             <h4 className={isRead ? 'read' : ''}>{subject} - <span>{body}</span></h4>
+            <h3>{shortDate === todayDate ? shortHour :shortDate}</h3>
         </div>
     )
 }

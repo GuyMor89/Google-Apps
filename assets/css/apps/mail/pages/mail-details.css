@@ -9,7 +9,7 @@
     border-radius: 20px;
 }
 
-.mail-icon-nav {
+.mail-details-nav {
     padding-block-start: 0.5em;
     padding-inline-start: 0.5em;
 
@@ -17,7 +17,7 @@
     font-size: 1.5em;
 }
 
-.mail-icon-nav>i {
+.mail-details-nav>i {
     padding: 0.5em;
 
     width: 50px;
@@ -31,11 +31,11 @@
     transition: background-color 100ms, box-shadow 200ms;
 }
 
-.mail-icon-nav>i:hover {
+.mail-details-nav>i:hover {
     background-color: hsl(0, 0%, 93%);
 }
 
-.mail-icon-nav>i:first-of-type {
+.mail-details-nav>i:first-of-type {
     outline: none;
 }
 

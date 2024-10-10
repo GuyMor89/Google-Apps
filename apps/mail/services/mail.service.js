@@ -26,6 +26,9 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => !mail.removedAt)
                 mails = mails.filter(mail => mail.to === 'user@gmail.com')
             }
+            if (filterBy.isPrimary) mails = mails.filter(mail => mail.isPrimary)
+            if (filterBy.isPromotions) mails = mails.filter(mail => mail.isPromotions)
+            if (filterBy.isSocial) mails = mails.filter(mail => mail.isSocial)
             if (filterBy.isStarred) {
                 mails = mails.filter(mail => mail.isStarred === true)
                 mails = mails.filter(mail => !mail.removedAt)
@@ -52,6 +55,12 @@ function query(filterBy = {}) {
                     || regex.test(mail.from)
                     || regex.test(mail.body))
             }
+            if (filterBy.sort.date) {
+                mails = mails.sort((a, b) => (a.sentAt - b.sentAt) * filterBy.sort.date)
+            }
+            if (filterBy.sort.subject) {
+                mails = mails.sort((a, b) => (a.subject.localeCompare(b.subject)) * filterBy.sort.subject)
+            }
             const amountOfMails = mails.length
             if (filterBy.page) {
                 const { currentPage, amountPerPage } = filterBy.page
@@ -60,7 +69,7 @@ function query(filterBy = {}) {
 
                 mails = mails.filter((mail, idx) => idx >= pageStart && idx <= pageEnd)
             }
-            return {mails, amountOfMails}
+            return { mails, amountOfMails }
         })
 }
 
@@ -81,7 +90,9 @@ function save(mail) {
 }
 
 function getDefaultFilter() {
-    return { text: '', page: { currentPage: 0, amountPerPage: 15 }, isInbox: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false }
+    return {
+        text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: { date: '', subject: ''}, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false
+    }
 }
 
 function getEmptyDraft() {

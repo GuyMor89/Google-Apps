@@ -16,6 +16,15 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
     const params = useParams()
     const navigate = useNavigate()
 
+    const { sort, isInbox, isPrimary, isPromotions, isSocial } = filterBy
+    const { date, subject } = sort
+
+    let { currentPage, amountPerPage } = filterBy.page
+    const startNum = amountOfMails === 0 ? amountOfMails : currentPage * amountPerPage + 1
+    const endNum = amountOfMails < (startNum + amountPerPage) ? amountOfMails : startNum + amountPerPage - 1
+
+    const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(lastAction)
+
     useEffect(() => {
         setIsLoading(true)
     }, [params.category])
@@ -37,17 +46,21 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
         if (noMailType === 'trash') return <React.Fragment><div className="no-mails-title">No conversations in Trash. </div> <div className="no-mails-subject">Messages that have been in Trash more than 30 days will be automatically deleted.</div></React.Fragment>
     }
 
-    function getMailNumbers() {
-        if (filterBy.page.currentPage === 0) return <span>1 - 15 of {amountOfMails}</span>
-        if (filterBy.page.currentPage === 1) return <span>16 - {amountOfMails} of {amountOfMails}</span>
+    function handlePageChange(event) {
+        const pressedLeft = event.target.className.includes('left')
+        const pressedRight = event.target.className.includes('right')
+
+        if (startNum === 1 && pressedLeft) return
+        if (endNum === amountOfMails && pressedRight) return
+
+        let diff
+        pressedLeft ? diff = -1 : diff = 1
+        setFilterBy({ ...filterBy, page: { ...filterBy.page, currentPage: currentPage + diff } })
     }
 
     const thereAreMails = mails.length !== 0
 
     if (isLoading) return <div className="progress" />
-
-    const { page } = filterBy
-    let { currentPage } = page
 
     return (
         <article className="mail-list">
@@ -57,26 +70,57 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
                     <i onClick={() => window.location.reload()} className="fa-solid fa-rotate-right" title="Refresh"></i>
                     <i className="fa-regular fa-envelope-open" title="Mark as Read"></i>
                 </div>
+                <div className="mail-sort-container">
+                    <div onClick={() => {date === '' || date === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, date: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, date: 1 } })}}>
+                        <i className={date === '' || date === 1 ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
+                        <span>Date</span>
+                    </div>
+                    <div onClick={() => {subject === '' || subject === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, subject: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, subject: 1 } })}}>
+                        <i className={subject === '' || subject === 1 ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
+                        <span>Subject</span>
+                    </div>
+                </div>
                 <div className="mail-list-counter">
-                    {getMailNumbers()}
-                    <i className="fa-solid fa-angle-left" onClick={() => setFilterBy({ ...filterBy, page: { ...filterBy.page, currentPage: currentPage - 1 } })}></i>
-                    <i className="fa-solid fa-angle-right" onClick={() => setFilterBy({ ...filterBy, page: { ...filterBy.page, currentPage: currentPage + 1 } })}></i>
+                    <span>{startNum} - {endNum} of {amountOfMails}</span>
+                    <i className={currentPage === 0 ? "fa-solid fa-angle-left faint" : "fa-solid fa-angle-left"} onClick={handlePageChange}></i>
+                    <i className={endNum === amountOfMails ? "fa-solid fa-angle-right faint" : "fa-solid fa-angle-right"} onClick={handlePageChange}></i>
                 </div>
             </div>
-            {thereAreMails
-                ?
-                mails.map(mail =>
-                    <MailPreview key={mail.id} mail={mail} />)
-                :
-                noMailMessage()
+            {
+                isInbox &&
+                <div className="mail-list-filter">
+                    <div className={isPrimary ? "mail-list-filter-primary blue chosen" : "mail-list-filter-primary chosen"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                        <i className="fa-solid fa-inbox"></i>
+                        <span>Primary</span>
+                        <div className={isPrimary ? "mail-list-filter-bar chosen" : "mail-list-filter-bar"}></div>
+                    </div>
+                    <div className={isPromotions ? "mail-list-filter-promotions blue" : "mail-list-filter-promotions"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: true, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                        <i className="fa-solid fa-tag"></i>
+                        <span>Promotions</span>
+                        <div className={isPromotions ? "mail-list-filter-bar chosen" : "mail-list-filter-bar"}></div>
+                    </div>
+                    <div className={isSocial ? "mail-list-filter-social blue" : "mail-list-filter-social"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: false, isSocial: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                        <i className="fa-solid fa-user-group"></i>
+                        <span>Social</span>
+                        <div className={isSocial ? "mail-list-filter-bar chosen" : "mail-list-filter-bar"}></div>
+                    </div>
+                </div>
+            }
+            {
+                thereAreMails
+                    ?
+                    mails.map(mail =>
+                        <MailPreview key={mail.id} mail={mail} />)
+                    :
+                    noMailMessage()
             }
             <div className="mail-list-footer">
                 <div className="data-usage">
                     <div className="data-usage-bar"></div>
                     <div className="data-usage-stats">0.01GB of 15GB used</div>
                 </div>
-                <div className="last-activity">Last Account Activity: {utilService.formatDate(lastAction)}</div>
+                <div className="last-activity">Last Account Activity: {formattedDate} ({relativeTime})</div>
             </div>
-        </article>
+        </article >
     )
 }

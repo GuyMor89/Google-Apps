@@ -3,7 +3,8 @@
 }
 
 .blue {
-    color: darkblue;
+    color: hsl(214, 82%, 40%);
+
 }
 
 .search-input {
@@ -32,6 +33,7 @@ input[type="search"] {
     min-height: 2.4em;
 
     font-size: 1.25em;
+    font-family: Roboto-Regular;
 
     background-color: inherit;
     border: none;

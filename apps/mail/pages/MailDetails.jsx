@@ -27,20 +27,6 @@ export function MailDetails({ mailID }) {
         if (!isLoading && topRef.current) topRef.current.focus()
     }, [isLoading])
 
-    function parseBody(body) {
-        return body
-            .split('\n')
-            .map((line, idx) => {
-                if (line.trim() === '') return <br key={idx} />
-                return (
-                    <p key={idx}>
-                        {line.trim()} // Conver to Pre
-                        {idx < body.split('\n').length - 1 && <br />}
-                    </p>
-                )
-            })
-    }
-
     function moveToTrash() {
         setIsLoading({ ...isLoading, first: true })
         showSuccessMsg('E-Mail Moved to Trash')
@@ -72,11 +58,12 @@ export function MailDetails({ mailID }) {
     if (isLoading.second) return <div className="progress2" />
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
+    const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(sentAt)
 
     return (
         <section className="mail-details">
-            <article className="mail-icon-nav-container">
-                <div className="mail-icon-nav">
+            <article className="mail-details-nav-container">
+                <div className="mail-details-nav">
                     <i onClick={() => navigate(`/mail/${params.category}`)} ref={topRef} tabIndex="0" className="fa-solid fa-arrow-left" aria-hidden={false}></i>
                     <i className="fa-regular fa-folder-closed"></i>
                     <i onClick={params.category === 'trash' ? moveToInbox : moveToTrash} className={params.category === 'trash' ? "fa-solid fa-trash-can-arrow-up" : "fa-regular fa-trash-can"}></i>
@@ -89,8 +76,8 @@ export function MailDetails({ mailID }) {
                     <img src="./assets/img/user.png"></img>
                 </div>
                 <div className="mail-details-from">{from}</div>
-                <div className="mail-details-time">{utilService.formatDate(sentAt)}</div>
-                <div className="mail-details-body">{parseBody(body)}</div>
+                <div className="mail-details-time">{formattedDate} ({relativeTime})</div>
+                <pre className="mail-details-body">{body}</pre>
                 <div className="mail-details-buttons">
                     <button className="mail-reply"><i className="fa-solid fa-reply"></i>Reply</button>
                     <button className="mail-forward"><i className="fa-solid fa-share"></i>Forward</button>

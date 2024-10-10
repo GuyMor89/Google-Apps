@@ -36,7 +36,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
                 <article className="icon-nav">
                     <i className="fa-solid fa-bars"></i>
                     <i className="fa-solid fa-pencil" onClick={() => setSearchParams({ compose: '' })}></i>
-                    <i className={currentCategory === 'inbox' ? "fa-solid fa-inbox chosen" : "fa-solid fa-inbox "} onClick={() => { setCurrentCategory('inbox'), navigate('/mail/inbox') }} title="Inbox"></i>
+                    <i className={currentCategory === 'inbox' ? "fa-solid fa-inbox chosen" : "fa-solid fa-inbox"} onClick={() => { setCurrentCategory('inbox'), navigate('/mail/inbox') }} title="Inbox"></i>
                     <i className={currentCategory === 'starred' ? "fa-solid fa-star gold chosen" : "fa-regular fa-star"} onClick={() => { setCurrentCategory('starred'), navigate('/mail/starred') }} title="Starred"></i>
                     <i className={currentCategory === 'sent' ? "fa-solid fa-paper-plane chosen" : "fa-regular fa-paper-plane"} onClick={() => { setCurrentCategory('sent'), navigate('/mail/sent') }} title="Sent"></i>
                     <i className={currentCategory === 'draft' ? "fa-solid fa-file chosen" : "fa-regular fa-file"} onClick={() => { setCurrentCategory('draft'), navigate('/mail/draft') }} title="Drafts"></i>

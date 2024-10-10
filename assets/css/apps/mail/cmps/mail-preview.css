@@ -1,5 +1,4 @@
 .mail-list {
-    padding: 1.5em 0;
     padding-block-end: 2em;
     margin-block-end: 2em;
 
@@ -12,7 +11,8 @@
 }
 
 .mail-list-nav {
-    margin-block-end: 1.3em;
+    margin-block-start: 1.2em;
+    color: hsl(0, 0%, 15%);
 }
 
 .mail-list-buttons,
@@ -44,6 +44,12 @@
     background-color: hsl(0, 0%, 93%);
 }
 
+.mail-list-counter>i.faint,
+.mail-list-counter>i:hover.faint {
+    cursor: auto;
+    background-color: white;
+}
+
 .mail-list-counter {
     margin: 0 0.55em;
 }
@@ -53,6 +59,77 @@
     font-size: 0.8em;
 
     color: hsl(0, 0%, 40%);
+}
+
+.mail-sort-container {
+    margin-inline-start: 2em;
+}
+
+.mail-sort-container>div {
+    padding: 0.35em 0.7em;
+
+    font-size: 1em;
+    border: 2px solid hsl(0, 0%, 86%);
+    color:hsl(0, 0%, 20%);
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    transition: background-color 200ms;
+}
+
+.mail-sort-container>div:hover {
+    background-color: hsl(0, 0%, 93%);
+}
+
+.mail-sort-container>div>span {
+    margin-block-end: 0.1em;
+    font-family: OpenSans-Regular;
+    font-weight: 600;
+}
+
+.mail-list-filter-primary,
+.mail-list-filter-promotions,
+.mail-list-filter-social {
+    height: 90px;
+
+    font-size: 1.4em;
+    color: hsl(0, 0%, 15%);
+
+    cursor: pointer;
+}
+
+.mail-list-filter-primary:hover,
+.mail-list-filter-promotions:hover,
+.mail-list-filter-social:hover {
+    background-color: hsl(0, 0%, 96%);
+}
+
+.mail-list-filter-primary.chosen,
+.mail-list-filter-promotions.chosen
+.mail-list-filter-social.chosen {
+    background-color: hsl(0, 0%, 96%);
+}
+
+.mail-list-filter-primary>i,
+.mail-list-filter-promotions>i,
+.mail-list-filter-social>i {
+    margin-block-start: 0.2em;
+    margin-inline-start: 1.25em;
+}
+
+.mail-list-filter-primary>span,
+.mail-list-filter-promotions>span,
+.mail-list-filter-social>span {
+    font-family: Youtube-Regular;
+    font-weight: 600;
+}
+
+.mail-list-filter-bar.chosen {
+    height: 4px;
+    width: 90%;
+
+    background-color: hsl(214, 82%, 40%);
 }
 
 .no-mails-title,
@@ -90,6 +167,7 @@
 
 .mail-preview {
     padding: 0 0.75em;
+    padding-inline-end: 1.5em;
 
     /* height: 100%; */
 
@@ -138,8 +216,6 @@
 
 .mail-preview>h3 {
     margin-inline-start: 0.5em;
-
-    width: 15em;
 
     font-size: 1.25em;
     font-family: Roboto-Regular;

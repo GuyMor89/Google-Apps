@@ -20,6 +20,7 @@
 
     font-size: 2em;
     background-color: hsl(215, 68%, 97%);
+    color: hsl(0, 0%, 15%);
 }
 
 .side-filter>article {
