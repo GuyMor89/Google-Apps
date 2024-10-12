@@ -6,11 +6,12 @@ import { MailPreview } from "../cmps/MailPreview.jsx"
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
 
-export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
+export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAllCheckedMails }) {
 
     const [noMailType, setNoMailType] = useState(null)
     const [lastAction, setLastAction] = useState(Date.now())
     const [isChecked, setIsChecked] = useState(null)
+    const [checkedMailIDs, setCheckedMailIDs] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     const params = useParams()
@@ -58,6 +59,21 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
         setFilterBy({ ...filterBy, page: { ...filterBy.page, currentPage: currentPage + diff } })
     }
 
+    function checkAllMails() {
+        const mailIDs = mails.reduce((ids, mail) => {
+            ids.push(mail.id)
+            return ids
+        }, [])
+
+        return setCheckedMailIDs(prev => prev.length > 0 ? [] : mailIDs)
+    }
+
+    function handleCheckClass() {
+        if (checkedMailIDs.length === mails.length) return "fa-regular fa-square-check"
+        if (checkedMailIDs.length > 0 && checkedMailIDs.length < mails.length) return "fa-regular fa-square-minus"
+        return "fa-regular fa-square"
+    }
+
     const thereAreMails = mails.length !== 0
 
     if (isLoading) return <div className="progress" />
@@ -66,16 +82,16 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
         <article className="mail-list">
             <div className="mail-list-nav">
                 <div className="mail-list-buttons">
-                    <i onClick={() => setIsChecked(!isChecked)} className={isChecked ? "fa-regular fa-square-check" : "fa-regular fa-square"} title="Select All"></i>
+                    <i onClick={checkAllMails} className={handleCheckClass()} title="Select All"></i>
                     <i onClick={() => window.location.reload()} className="fa-solid fa-rotate-right" title="Refresh"></i>
-                    <i className="fa-regular fa-envelope-open" title="Mark as Read"></i>
+                    <i onClick={() => unreadAllCheckedMails(checkedMailIDs)} className="fa-regular fa-envelope-open" title="Mark as Read"></i>
                 </div>
                 <div className="mail-sort-container">
-                    <div onClick={() => {date === '' || date === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, date: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, date: 1 } })}}>
+                    <div onClick={() => { date === '' || date === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, date: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, date: 1 } }) }}>
                         <i className={date === '' || date === 1 ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
                         <span>Date</span>
                     </div>
-                    <div onClick={() => {subject === '' || subject === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, subject: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, subject: 1 } })}}>
+                    <div onClick={() => { subject === '' || subject === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, subject: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, subject: 1 } }) }}>
                         <i className={subject === '' || subject === 1 ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
                         <span>Subject</span>
                     </div>
@@ -89,17 +105,17 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
             {
                 isInbox &&
                 <div className="mail-list-tabs">
-                    <div className={isPrimary ? "mail-list-tabs-primary blue chosen" : "mail-list-tabs-primary chosen"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                    <div className={isPrimary ? "mail-list-tabs-primary blue" : "mail-list-tabs-primary"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: { ...sort }, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
                         <i className="fa-solid fa-inbox"></i>
                         <span>Primary</span>
                         <div className={isPrimary ? "mail-list-tabs-bar chosen" : "mail-list-tabs-bar"}></div>
                     </div>
-                    <div className={isPromotions ? "mail-list-tabs-promotions blue" : "mail-list-tabs-promotions"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: true, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                    <div className={isPromotions ? "mail-list-tabs-promotions blue" : "mail-list-tabs-promotions"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: { ...sort }, isInbox: true, isPrimary: false, isPromotions: true, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
                         <i className="fa-solid fa-tag"></i>
                         <span>Promotions</span>
                         <div className={isPromotions ? "mail-list-tabs-bar chosen" : "mail-list-tabs-bar"}></div>
                     </div>
-                    <div className={isSocial ? "mail-list-tabs-social blue" : "mail-list-tabs-social"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: {...sort}, isInbox: true, isPrimary: false, isPromotions: false, isSocial: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
+                    <div className={isSocial ? "mail-list-tabs-social blue" : "mail-list-tabs-social"} onClick={() => setFilterBy({ text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: { ...sort }, isInbox: true, isPrimary: false, isPromotions: false, isSocial: true, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false })}>
                         <i className="fa-solid fa-user-group"></i>
                         <span>Social</span>
                         <div className={isSocial ? "mail-list-tabs-bar chosen" : "mail-list-tabs-bar"}></div>
@@ -110,7 +126,7 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails }) {
                 thereAreMails
                     ?
                     mails.map(mail =>
-                        <MailPreview key={mail.id} mail={mail} />)
+                        <MailPreview key={mail.id} mail={mail} checkedMailIDs={checkedMailIDs} setCheckedMailIDs={setCheckedMailIDs} />)
                     :
                     noMailMessage()
             }

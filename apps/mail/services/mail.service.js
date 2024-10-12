@@ -26,7 +26,11 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => !mail.removedAt)
                 mails = mails.filter(mail => mail.to === 'user@gmail.com')
             }
-            if (filterBy.isPrimary) mails = mails.filter(mail => mail.isPrimary)
+            let unreadPrimary = ''
+            if (filterBy.isPrimary) {
+                mails = mails.filter(mail => mail.isPrimary)
+                unreadPrimary = mails.filter(mail => !mail.isRead).length
+            }
             if (filterBy.isPromotions) mails = mails.filter(mail => mail.isPromotions)
             if (filterBy.isSocial) mails = mails.filter(mail => mail.isSocial)
             if (filterBy.isStarred) {
@@ -55,10 +59,10 @@ function query(filterBy = {}) {
                     || regex.test(mail.from)
                     || regex.test(mail.body))
             }
-            if (filterBy.sort.date) {
+            if (filterBy.sort && filterBy.sort.date) {
                 mails = mails.sort((a, b) => (a.sentAt - b.sentAt) * filterBy.sort.date)
             }
-            if (filterBy.sort.subject) {
+            if (filterBy.sort && filterBy.sort.subject) {
                 mails = mails.sort((a, b) => (a.subject.localeCompare(b.subject)) * filterBy.sort.subject)
             }
             const amountOfMails = mails.length
@@ -69,7 +73,7 @@ function query(filterBy = {}) {
 
                 mails = mails.filter((mail, idx) => idx >= pageStart && idx <= pageEnd)
             }
-            return { mails, amountOfMails }
+            return { mails, unreadPrimary, amountOfMails }
         })
 }
 

@@ -1,5 +1,5 @@
 .mail-details {
-    margin: 0.5em 0.5em 0 0;
+    margin: 0.5em 1em 0 0;
     margin-block-end: 2em;
     padding-block-end: 3em;
 
@@ -13,7 +13,7 @@
     padding-block-start: 0.5em;
     padding-inline-start: 0.5em;
 
-    width: 35%;
+    width: 350px;
     font-size: 1.5em;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .mail-details-body {
-    width: calc(100vw - 275px);
+    margin-inline-end: 0.9em;
 
     font-size: 1.15em;
     font-family: OpenSans-Regular;

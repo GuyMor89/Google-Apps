@@ -6,6 +6,7 @@ const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRo
 export function MailFilter({ filterBy, changeFilterBy }) {
 
     const [currentCategory, setCurrentCategory] = useState('inbox')
+    const [unreadPageNumbers, setUnreadPageNumbers] = useState(null)
     const [menuOpen, setMenuOpen] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -22,11 +23,27 @@ export function MailFilter({ filterBy, changeFilterBy }) {
         else setCurrentCategory('inbox')
     }, [params])
 
+    useEffect(() => {
+        setTimeout(() => {
+            calculateUnreadNumbers()
+        }, 250);
+    }, [location])
+
     function handleSideFilterClasses(category) {
         let categoryClass = 'filter-icon-nav-category'
         if (currentCategory === category) categoryClass += ' chosen'
         if (menuOpen) categoryClass += ' expanded'
         return categoryClass
+    }
+
+    function calculateUnreadNumbers() {
+        mailService.query()
+            .then(({ mails }) => {
+                const amountOfUnreadPrimaryMails = mails.filter(mail => mail.isPrimary && !mail.isRead).length
+                const amountOfDrafts = mails.filter(mail => mail.sentAt === null).length
+
+                setUnreadPageNumbers({ amountOfUnreadPrimaryMails, amountOfDrafts })
+            })
     }
 
     return (
@@ -43,7 +60,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
             <section className="side-filter">
                 <article className="filter-icon-nav">
                     <i className="fa-solid fa-bars" onClick={() => setMenuOpen(!menuOpen)}></i>
-                    <div className={`${handleSideFilterClasses('compose')} compose`} onClick={() => setSearchParams({ compose: '' }) } title="Compose">
+                    <div className={`${handleSideFilterClasses('compose')} compose`} onClick={() => setSearchParams({ compose: '' })} title="Compose">
                         <i className="fa-solid fa-pencil"></i>
                         {menuOpen && <h3>Compose</h3>}
                     </div>
@@ -52,7 +69,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
                         {menuOpen &&
                             <React.Fragment>
                                 <h3>Inbox</h3>
-                                <span>50</span>
+                                <span>{unreadPageNumbers && unreadPageNumbers.amountOfUnreadPrimaryMails}</span>
                             </React.Fragment>}
                     </div>
                     <div className={handleSideFilterClasses('starred')} onClick={() => { setCurrentCategory('starred'), navigate('/mail/starred') }} title="Starred">
@@ -76,7 +93,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
                         {menuOpen &&
                             <React.Fragment>
                                 <h3>Drafts</h3>
-                                <span></span>
+                                <span>{unreadPageNumbers && unreadPageNumbers.amountOfDrafts}</span>
                             </React.Fragment>}
                     </div>
                     <div className={handleSideFilterClasses('trash')} onClick={() => { setCurrentCategory('trash'), navigate('/mail/trash') }} title="Trash">

@@ -4,10 +4,10 @@ import { mailService } from "../services/mail.service.js"
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
 
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs }) {
 
     const [starred, setStarred] = useState(mail.isStarred)
-    const [isChecked, setIsChecked] = useState(null)
+    const [checked, setChecked] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
 
     const hasMounted = useRef(false)
@@ -15,19 +15,18 @@ export function MailPreview({ mail }) {
     const params = useParams()
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
-    const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(sentAt)
-    const todayDate = utilService.formatDate(Date.now()).shortDate 
 
     useEffect(() => {
-
-    }, [isChecked])
+        if (checkedMailIDs.find(checkedIDs => checkedIDs === mail.id)) setChecked(true)
+        else if (checkedMailIDs.length === 0) setChecked(false)
+    }, [checkedMailIDs])
 
     useEffect(() => {
         if (hasMounted.current) editMail('starred')
         else hasMounted.current = true
     }, [starred])
 
-    function handleIconClicks(event) {
+    function handleStarClick(event) {
         event.stopPropagation()
         setStarred(!starred)
     }
@@ -37,13 +36,45 @@ export function MailPreview({ mail }) {
         if (type === 'starred') return mailService.save({ ...mail, isStarred: !isStarred })
     }
 
+    function addCheckedIDs(event) {
+        event.stopPropagation()
+        setChecked(!checked)
+
+        if (checkedMailIDs.includes(mail.id)) {
+            const newCheckedMailIDs = checkedMailIDs.filter(id => id !== mail.id)
+            setCheckedMailIDs(newCheckedMailIDs)
+        }
+        else setCheckedMailIDs(prevIDs => [...prevIDs, mail.id])
+    }
+
+    function handleDateFormatting() {
+        const todayDate = utilService.formatDate(Date.now()).shortDate
+        const currentYear = utilService.formatDate(Date.now()).shortYear
+
+        if (params.category === 'draft') {
+            const { shortDate, shortHour, mediumDate, shortYear } = utilService.formatDate(createdAt)
+            if (shortYear === currentYear) {
+                return shortDate === todayDate ? shortHour : shortDate
+            }
+            else return mediumDate
+        }
+        else {
+            const { shortDate, shortHour, mediumDate, shortYear } = utilService.formatDate(sentAt)
+            if (shortYear === currentYear) {
+                return shortDate === todayDate ? shortHour : shortDate
+            }
+            else return mediumDate
+        }
+
+    }
+
     return (
-        <div className={isRead ? 'mail-preview read' : 'mail-preview'} onClick={() => { params.category === 'draft' ? setSearchParams({ compose: mail.id }) : (editMail('read'), navigate(`/mail/${params.category}/${mail.id}`)) }}>
-            <i onClick={() => setIsChecked(!isChecked)} className={isChecked ? "fa-regular fa-square-check" : "fa-regular fa-square faint"}></i>
-            <i onClick={handleIconClicks} className={starred ? "fa-solid fa-star gold" : "fa-regular fa-star faint"}></i>
-            <h3 className={isRead ? 'read' : ''}>{from === 'user@gmail.com' ? 'me' : from}</h3>
-            <h4 className={isRead ? 'read' : ''}>{subject} - <span>{body}</span></h4>
-            <h3>{shortDate === todayDate ? shortHour :shortDate}</h3>
+        <div className={`mail-preview ${isRead ? 'mail-preview read' : 'mail-preview'} ${checked ? 'checked' : ''}`} onClick={() => { params.category === 'draft' ? setSearchParams({ compose: mail.id }) : (editMail('read'), navigate(`/mail/${params.category}/${mail.id}`)) }}>
+            <i onClick={addCheckedIDs} className={checked ? "fa-regular fa-square-check" : "fa-regular fa-square faint"}></i>
+            <i onClick={handleStarClick} className={starred ? "fa-solid fa-star gold" : "fa-regular fa-star faint"}></i>
+            <h3 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{from === 'user@gmail.com' ? 'me' : from}</h3>
+            <h4 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{subject} - <span>{body}</span></h4>
+            <h3>{handleDateFormatting()}</h3>
         </div>
     )
 }

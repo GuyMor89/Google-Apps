@@ -165,7 +165,11 @@
 }
 
 .gold {
-    color: gold;
+    color: gold !important;
+}
+
+.checked {
+    background-color: hsl(215, 100%, 88%) !important;
 }
 
 .mail-preview {
@@ -174,9 +178,9 @@
 
     /* height: 100%; */
 
-    border-block-start: 2px solid hsl(0, 0%, 90%);
-    border-block-end: 2px solid hsl(0, 0%, 90%);
-    border-inline: 2px solid #f2f6fc;
+    border-block-start: 1px solid hsl(0, 0%, 90%);
+    border-block-end: 1px solid hsl(0, 0%, 90%);
+    border-inline: 1px solid #f2f6fc;
     border-radius: 3px;
     box-shadow: none;
 
@@ -188,15 +192,15 @@
 }
 
 .mail-preview:hover {
-    border-inline: 2px solid hsl(0, 0%, 90%);
-    border-block-end: 2px solid hsl(0, 0%, 50%);
+    border-inline: 1px solid hsl(0, 0%, 90%);
+    border-block-end: 1px solid hsl(0, 0%, 50%);
     box-shadow:
         2px 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
 .mail-preview:first-of-type,
 .mail-preview:first-of-type:hover {
-    border-block-start: 2px solid hsl(0, 0%, 100%);
+    border-block-start: 1px solid hsl(0, 0%, 100%);
 }
 
 .mail-preview>i {
@@ -206,8 +210,12 @@
     border-radius: 9999px;
 }
 
+.mail-preview:hover i {
+    color: black
+}
+
 .mail-preview>i:hover {
-    background-color: #eee;
+    background-color: hsla(0, 0%, 75%, 0.25);
 }
 
 .mail-preview>h3,
@@ -255,7 +263,7 @@
     height: 10px;
     width: 300px;
 
-    background-color: #eee;
+    background-color: hsl(0, 0%, 93%);
     border-radius: 8px;
 }
 

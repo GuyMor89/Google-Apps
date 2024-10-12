@@ -98,7 +98,7 @@
     background-color: #c2e7ff;
 }
 
-.fa-pencil:hover {
+.compose:hover {
     background-color: #c2e7ff !important;
     box-shadow:
         1px 1px 5px 3px rgba(0, 0, 0, 0.1);

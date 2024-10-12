@@ -78,6 +78,16 @@ function formatDate(ms) {
         day: 'numeric'
     }
 
+    const mediumDateOptions = {
+        month: '2-digit',
+        day: '2-digit',
+        year: 'numeric'
+    }
+
+    const shortYearOptions = {
+        year: 'numeric',
+    }
+
     const hourOptions = {
         hour: 'numeric',
         minute: 'numeric',
@@ -86,8 +96,10 @@ function formatDate(ms) {
 
     const formattedDate = new Intl.DateTimeFormat('en-US', dateOptions).format(date)
     const formattedShortDate = new Intl.DateTimeFormat('en-US', shortDateOptions).format(date)
+    const formattedMediumDate = new Intl.DateTimeFormat('en-US', mediumDateOptions).format(date)
+    const formattedShortYear = new Intl.DateTimeFormat('en-US', shortYearOptions).format(date)
     const formattedHour = new Intl.DateTimeFormat('en-US', hourOptions).format(date)
-    
+
     // Calculate relative time (e.g., "1 day ago")
     const now = new Date()
     const timeDifference = now - date
@@ -110,7 +122,7 @@ function formatDate(ms) {
         relativeTime = `just now`
     }
 
-    return {shortDate: formattedShortDate, shortHour: formattedHour, formattedDate, relativeTime}
+    return { shortDate: formattedShortDate, shortHour: formattedHour, mediumDate: formattedMediumDate, shortYear: formattedShortYear, formattedDate, relativeTime }
 }
 
 function debounce(func, delay) {
