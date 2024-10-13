@@ -56,7 +56,7 @@
 }
 
 .mail-list-counter>span {
-    font-family: OpenSans-Regular;
+    font-family: Roboto;
     font-size: 0.8em;
 
     color: hsl(0, 0%, 40%);
@@ -85,7 +85,7 @@
 
 .mail-sort-container>div>span {
     margin-block-end: 0.1em;
-    font-family: OpenSans-Regular;
+    font-family: Roboto;
     font-weight: 600;
 }
 

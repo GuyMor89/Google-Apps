@@ -49,7 +49,7 @@
     margin: 0.6em 0;
     margin-block-end: 1em;
     font-size: 2em;
-    font-family: OpenSans-Regular;
+    font-family: Roboto;
 }
 
 .user-image {
@@ -67,7 +67,8 @@
     margin-block-start: 0.3em;
 
     font-size: 1.15em;
-    font-family: OpenSans-Bold;
+    font-family: Roboto;
+    font-weight: 800;
 }
 
 .mail-details-to {
@@ -79,14 +80,14 @@
     margin-inline-end: 1.5em;
 
     font-size: 1em;
-    font-family: OpenSans-Regular;
+    font-family: Roboto;
 }
 
 .mail-details-body {
     margin-inline-end: 1.5em;
 
     font-size: 1.15em;
-    font-family: OpenSans-Regular;
+    font-family: Roboto;
 
     text-wrap: pretty;
 }
