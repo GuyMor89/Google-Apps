@@ -2,6 +2,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .hidden {
@@ -13,8 +14,6 @@ body {
     margin: 0;
     font-family: Roboto-Regular;
     background-color: hsl(215, 68%, 97%);
-
-
 }
 
 h1,

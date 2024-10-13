@@ -26,8 +26,7 @@
     }
 
     .mail-header {
-        margin-block-end: 0.5em;
-        /* width: 400px; */
+        margin-block: 0.5em;
         height: max-content;
         grid-template-columns: minmax(max-content, 390px);
     }

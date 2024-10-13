@@ -44,31 +44,37 @@
 @font-face {
     font-family: Youtube-Regular;
     src: url(/assets/fonts/YouTube-Regular.otf);
+    font-display: swap 
 }
 
 @font-face {
     font-family: Roboto-Regular;
     src: url('../../fonts/Roboto-Regular.ttf');
+    font-display: swap 
 }
 
 @font-face {
     font-family: Roboto-Bold;
     src: url('/assets/fonts/Roboto-Bold.ttf');
+    font-display: swap 
 }
 
 @font-face {
     font-family: Roboto-Thin;
     src: url(/assets/fonts/Roboto-Thin.ttf);
+    font-display: swap 
 }
 
 @font-face {
     font-family: OpenSans-Regular;
     src: url(/assets/fonts/OpenSans-Regular.ttf);
+    font-display: swap 
 }
 
 @font-face {
     font-family: OpenSans-Bold;
     src: url(/assets/fonts/OpenSans-Bold.ttf);
+    font-display: swap 
 }
 
 @font-face {

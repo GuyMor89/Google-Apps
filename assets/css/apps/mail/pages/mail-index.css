@@ -54,7 +54,7 @@
 
     width: 65px;
 
-    border-radius: 9999px;
+    border-radius: 9999px !important;
 
     cursor: pointer;
 
