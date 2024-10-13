@@ -11,6 +11,7 @@ export const mailService = {
     save,
     getDefaultFilter,
     getEmptyDraft,
+    getEmptyReply,
     getFilterFromSearchParams,
     cleanFilter
 }
@@ -26,11 +27,7 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => !mail.removedAt)
                 mails = mails.filter(mail => mail.to === 'user@gmail.com')
             }
-            let unreadPrimary = ''
-            if (filterBy.isPrimary) {
-                mails = mails.filter(mail => mail.isPrimary)
-                unreadPrimary = mails.filter(mail => !mail.isRead).length
-            }
+            if (filterBy.isPrimary) mails = mails.filter(mail => mail.isPrimary)
             if (filterBy.isPromotions) mails = mails.filter(mail => mail.isPromotions)
             if (filterBy.isSocial) mails = mails.filter(mail => mail.isSocial)
             if (filterBy.isStarred) {
@@ -38,7 +35,10 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => !mail.removedAt)
             }
             if (filterBy.isSent) {
-                mails = mails.filter(mail => mail.from === 'user@gmail.com')
+                mails = mails.filter(mail =>
+                    mail.from === 'user@gmail.com' ||
+                    (Array.isArray(mail.replies) && mail.replies.some(reply => reply.from === 'user@gmail.com'))
+                )
                 mails = mails.filter(mail => mail.sentAt)
                 mails = mails.filter(mail => !mail.removedAt)
 
@@ -65,6 +65,9 @@ function query(filterBy = {}) {
             if (filterBy.sort && filterBy.sort.subject) {
                 mails = mails.sort((a, b) => (a.subject.localeCompare(b.subject)) * filterBy.sort.subject)
             }
+            if (filterBy.sort && filterBy.sort.read) {
+                mails = mails.sort((a, b) => (a.isRead - b.isRead) * filterBy.sort.read)
+            }
             const amountOfMails = mails.length
             if (filterBy.page) {
                 const { currentPage, amountPerPage } = filterBy.page
@@ -73,7 +76,7 @@ function query(filterBy = {}) {
 
                 mails = mails.filter((mail, idx) => idx >= pageStart && idx <= pageEnd)
             }
-            return { mails, unreadPrimary, amountOfMails }
+            return { mails, amountOfMails }
         })
 }
 
@@ -95,7 +98,7 @@ function save(mail) {
 
 function getDefaultFilter() {
     return {
-        text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: { date: '', subject: ''}, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false
+        text: '', page: { currentPage: 0, amountPerPage: 15 }, sort: { date: '', subject: '' }, isInbox: true, isPrimary: true, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: false
     }
 }
 
@@ -108,6 +111,16 @@ function getEmptyDraft() {
         sentAt: null,
         isStarred: false,
         isArchived: false,
+        from: 'user@gmail.com',
+        to: ""
+    }
+}
+
+function getEmptyReply() {
+    return {
+        createdAt: Date.now(),
+        body: "",
+        sentAt: null,
         from: 'user@gmail.com',
         to: ""
     }

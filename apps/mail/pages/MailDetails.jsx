@@ -1,6 +1,7 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+import { MailReply } from "../cmps/MailReply.jsx"
 
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
@@ -8,9 +9,11 @@ const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRo
 export function MailDetails({ mailID }) {
 
     const [mail, setMail] = useState(null)
+    const [currentAction, setCurrentAction] = useState({ isReplying: false, isForwarding: false })
     const [isLoading, setIsLoading] = useState({ first: false, second: true })
 
     const topRef = useRef(null)
+    const { isReplying, isForwarding } = currentAction
 
     const navigate = useNavigate()
     const params = useParams()
@@ -54,12 +57,22 @@ export function MailDetails({ mailID }) {
             })
     }
 
+    function handleReplyOrForwardRouting(type) {
+        setCurrentAction({ isReplying: false, isForwarding: false })
+        setTimeout(() => {
+            type === 'reply' ?
+            setCurrentAction({ isReplying: true, isForwarding: false })
+            :
+            setCurrentAction({ isReplying: false, isForwarding: true })    
+        }, 0);  
+    }
+
     if (isLoading.first) return <div className="progress" />
     if (isLoading.second) return <div className="progress2" />
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
     const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(sentAt)
-
+    
     return (
         <section className="mail-details">
             <article className="mail-details-nav-container">
@@ -76,13 +89,26 @@ export function MailDetails({ mailID }) {
                     <img src="./assets/img/user.png"></img>
                 </div>
                 <div className="mail-details-from">{from}</div>
+                <div className="mail-details-to">to: {to}</div>
                 <div className="mail-details-time">{formattedDate} ({relativeTime})</div>
                 <pre className="mail-details-body">{body}</pre>
-                <div className="mail-details-buttons">
-                    <button className="mail-reply"><i className="fa-solid fa-reply"></i>Reply</button>
-                    <button className="mail-forward"><i className="fa-solid fa-share"></i>Forward</button>
-                </div>
             </article>
+            {mail.replies && mail.replies.map(reply => {
+                return <article key={reply.createdAt} className="mail-reply-content">
+                    <div className="user-image">
+                        <img src="./assets/img/user.png"></img>
+                    </div>
+                    <div className="mail-details-from">{reply.from}</div>
+                    <div className="mail-details-to">to: {reply.to}</div>
+                    <div className="mail-details-time">{utilService.formatDate(reply.sentAt).formattedDate} {utilService.formatDate(reply.sentAt).relativeTime}</div>
+                    <pre className="mail-details-body">{reply.body}</pre>
+                </article>
+            })}
+            <div className="mail-details-buttons">
+                <button onClick={() => handleReplyOrForwardRouting('reply')} className="mail-reply-button"><i className="fa-solid fa-reply"></i>Reply</button>
+                <button onClick={() => handleReplyOrForwardRouting('foward')} className="mail-forward-button"><i className="fa-solid fa-share"></i>Forward</button>
+            </div>
+            <MailReply mail={mail} currentAction={currentAction} setCurrentAction={setCurrentAction} />
         </section>
     )
 }

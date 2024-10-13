@@ -68,8 +68,8 @@ export function MailFilter({ filterBy, changeFilterBy }) {
                         <i className="fa-solid fa-inbox"></i>
                         {menuOpen &&
                             <React.Fragment>
-                                <h3>Inbox</h3>
-                                <span>{unreadPageNumbers && unreadPageNumbers.amountOfUnreadPrimaryMails}</span>
+                                <h3 className={unreadPageNumbers && unreadPageNumbers.amountOfUnreadPrimaryMails > 0 ? 'bold' : ''}>Inbox</h3>
+                                <span className={unreadPageNumbers && unreadPageNumbers.amountOfUnreadPrimaryMails > 0 ? 'bold' : ''}>{unreadPageNumbers && unreadPageNumbers.amountOfUnreadPrimaryMails ? unreadPageNumbers && unreadPageNumbers.amountOfUnreadPrimaryMails : ''}</span>
                             </React.Fragment>}
                     </div>
                     <div className={handleSideFilterClasses('starred')} onClick={() => { setCurrentCategory('starred'), navigate('/mail/starred') }} title="Starred">
@@ -92,8 +92,8 @@ export function MailFilter({ filterBy, changeFilterBy }) {
                         <i className={currentCategory === 'draft' ? "fa-solid fa-file" : "fa-regular fa-file"}></i>
                         {menuOpen &&
                             <React.Fragment>
-                                <h3>Drafts</h3>
-                                <span>{unreadPageNumbers && unreadPageNumbers.amountOfDrafts}</span>
+                                <h3 className={unreadPageNumbers && unreadPageNumbers.amountOfDrafts > 0 ? 'bold' : ''}>Drafts</h3>
+                                <span className={unreadPageNumbers && unreadPageNumbers.amountOfDrafts > 0 ? 'bold' : ''}>{unreadPageNumbers && unreadPageNumbers.amountOfDrafts > 0 ? unreadPageNumbers && unreadPageNumbers.amountOfDrafts : ''}</span>
                             </React.Fragment>}
                     </div>
                     <div className={handleSideFilterClasses('trash')} onClick={() => { setCurrentCategory('trash'), navigate('/mail/trash') }} title="Trash">

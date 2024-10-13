@@ -1,0 +1,39 @@
+.mail-reply {
+    margin-block-start: 2em;
+    width: 75%;
+
+    box-shadow: 0 4px 5px 1px rgba(0, 0, 0, .01), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2);
+    border-radius: 20px;
+
+}
+
+#mail-reply-to-input {
+    margin: 0 1em;
+    padding: 0.6em 0;
+
+    height: 50px;
+
+    font-size: 1.15em;
+    font-family: Youtube-Regular;
+    caret-color: hsl(0, 0%, 60%);
+
+    border: 0;
+    outline: none;
+}
+
+#mail-reply-body-input {
+    margin: 0 1.25em;
+    padding: 1em 0;
+
+    min-height: 150px;
+
+    max-height: 150px;
+
+    border: 0;
+
+    font-size: 1.25em;
+    caret-color: hsl(0, 0%, 60%);
+
+    outline: none;
+    resize: none
+}

@@ -1,4 +1,6 @@
 .mail-details {
+    position: static;
+
     margin: 0.5em 1em 0 0;
     margin-block-end: 2em;
     padding-block-end: 3em;
@@ -7,6 +9,10 @@
     
     background-color: white;
     border-radius: 20px;
+}
+
+.mail-details-content {
+    margin-block-end: 1em;
 }
 
 .mail-details-nav {
@@ -28,7 +34,7 @@
 
     cursor: pointer;
 
-    transition: background-color 100ms, box-shadow 200ms;
+    transition: background-color 200ms, box-shadow 200ms;
 }
 
 .mail-details-nav>i:hover {
@@ -40,7 +46,8 @@
 }
 
 .mail-details-subject {
-    margin: 0.5em 0;
+    margin: 0.6em 0;
+    margin-block-end: 1em;
     font-size: 2em;
     font-family: OpenSans-Regular;
 }
@@ -63,16 +70,20 @@
     font-family: OpenSans-Bold;
 }
 
+.mail-details-to {
+    margin-block-start: 2.5em;
+}
+
 .mail-details-time {
     margin-block-start: 0.3em;
-    margin-inline-end: 0.9em;
+    margin-inline-end: 1.5em;
 
     font-size: 1em;
     font-family: OpenSans-Regular;
 }
 
 .mail-details-body {
-    margin-inline-end: 0.9em;
+    margin-inline-end: 1.5em;
 
     font-size: 1.15em;
     font-family: OpenSans-Regular;
@@ -81,11 +92,12 @@
 }
 
 .mail-details-buttons {
+    margin: 0 6em;
     width: fit-content;
 }
 
 .mail-details-buttons>button {
-    margin-block-start: 2em;
+    margin-block-start: 1em;
     padding: 0.5em 0.5em;
 
     width: 150px;
@@ -97,7 +109,7 @@
     border-radius: 9999px;
     color: hsl(0, 0%, 25%);
 
-    transition: background-color 100ms;
+    transition: background-color 200ms;
 }
 
 .mail-details-buttons>button:nth-of-type(2) {
@@ -110,4 +122,9 @@
 
 .mail-details-buttons>button:hover {
     background-color: hsl(0, 0%, 94%);
+}
+
+.mail-reply-content {
+    padding: 2em 0;
+    border-block-start: 2px solid hsl(0, 0%, 90%);
 }

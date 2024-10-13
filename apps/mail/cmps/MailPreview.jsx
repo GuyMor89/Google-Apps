@@ -14,7 +14,7 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs }) {
     const navigate = useNavigate()
     const params = useParams()
 
-    const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
+    const { id, name, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
 
     useEffect(() => {
         if (checkedMailIDs.find(checkedIDs => checkedIDs === mail.id)) setChecked(true)
@@ -72,7 +72,7 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs }) {
         <div className={`mail-preview ${isRead ? 'mail-preview read' : 'mail-preview'} ${checked ? 'checked' : ''}`} onClick={() => { params.category === 'draft' ? setSearchParams({ compose: mail.id }) : (editMail('read'), navigate(`/mail/${params.category}/${mail.id}`)) }}>
             <i onClick={addCheckedIDs} className={checked ? "fa-regular fa-square-check" : "fa-regular fa-square faint"}></i>
             <i onClick={handleStarClick} className={starred ? "fa-solid fa-star gold" : "fa-regular fa-star faint"}></i>
-            <h3 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{from === 'user@gmail.com' ? 'me' : from}</h3>
+            <h3 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{params.category === 'sent' ? `To: ${to}` : name}</h3>
             <h4 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{subject} - <span>{body}</span></h4>
             <h3>{handleDateFormatting()}</h3>
         </div>

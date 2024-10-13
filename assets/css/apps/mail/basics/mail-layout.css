@@ -25,7 +25,12 @@
 
 .filter-icon-nav {
     display: grid;
+
     place-items: center;
+}
+
+.compose {
+    justify-self: start;
 }
 
 .filter-icon-nav-category {
@@ -48,14 +53,13 @@
     grid-column: 2 / 3;
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 260px 1fr;
 }
 
 .mail-list {
     grid-column: 2 / 3;
     display: grid;
     grid-auto-rows: 60px;
-    grid-template-columns: 1fr;
 }
 
 .mail-list-nav {
@@ -85,7 +89,7 @@
 .mail-sort-container {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: max-content max-content max-content;
     gap: 1em;
 
     place-items: center;
@@ -111,7 +115,7 @@
 
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: repeat(3, 350px);
+    grid-template-columns: repeat(3, 318px);
 
     align-self: end;
     justify-self: start;
@@ -176,6 +180,8 @@
 }
 
 .mail-details-nav-container {
+    grid-column: 1 / -1;
+
     display: grid;
     justify-items: start;
 }
@@ -191,7 +197,10 @@
     justify-self: start;
 }
 
-.mail-details-content {
+.mail-details-content,
+.mail-reply-content {
+    grid-column: 1 / -1;
+
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
     grid-template-rows: repeat(2, max-content) minmax(50px, max-content) max-content;
@@ -209,7 +218,8 @@
     justify-self: center;
 }
 
-.mail-details-from {
+.mail-details-from,
+.mail-details-to {
     grid-column: 2/3;
     grid-row: 2/3;
 }
@@ -227,8 +237,7 @@
 }
 
 .mail-details-buttons {
-    grid-column: 2/3;
-    grid-row: 4/5;
+    grid-column: 1 / -1;
 
     display: grid;
     grid-auto-flow: column;
@@ -236,11 +245,18 @@
     justify-items: start;
 }
 
-.mail-send {
+.mail-send,
+.mail-reply {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, max-content);
+    /* grid-template-rows: repeat(5, max-content); */
     grid-template-rows: max-content max-content max-content 1fr max-content;
+}
+
+.mail-reply {
+    grid-template-rows: repeat(3, max-content);
+
+    justify-self: center;
 }
 
 .mail-send-header {
@@ -261,7 +277,8 @@
     align-self: center;
 }
 
-#mail-send-to {
+#mail-send-to,
+#mail-reply-to-input {
     grid-column: 1/ -1;
     grid-row: 2/3;
 }
@@ -271,7 +288,8 @@
     grid-row: 3/4;
 }
 
-#mail-send-body {
+#mail-send-body,
+#mail-reply-body-input {
     grid-column: 1/ -1;
     grid-row: 4/5;
 }

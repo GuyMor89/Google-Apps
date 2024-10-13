@@ -48,11 +48,11 @@ export function MailIndex() {
 
     function changeCategoryByRouteParams() {
         if (params.category === 'inbox' && filterBy.isInbox !== true) setFilterBy(mailService.getDefaultFilter)
-        if (params.category === 'starred' && filterBy.isStarred !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: true, isSent: false, isDraft: false, isTrash: false, all: false })
-        if (params.category === 'sent' && filterBy.isSent !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: true, isDraft: false, isTrash: false, all: false })
-        if (params.category === 'draft' && filterBy.isDraft !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: true, isTrash: false, all: false })
-        if (params.category === 'trash' && filterBy.isTrash !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: true, all: false })
-        if (params.category === 'all' && filterBy.all !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: true })
+        if (params.category === 'starred' && filterBy.isStarred !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: ''}, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: true, isSent: false, isDraft: false, isTrash: false, all: false })
+        if (params.category === 'sent' && filterBy.isSent !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: true, isDraft: false, isTrash: false, all: false })
+        if (params.category === 'draft' && filterBy.isDraft !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: true, isTrash: false, all: false })
+        if (params.category === 'trash' && filterBy.isTrash !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: true, all: false })
+        if (params.category === 'all' && filterBy.all !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: true })
     }
 
     function unreadAllCheckedMails(checkedMailIDs) {

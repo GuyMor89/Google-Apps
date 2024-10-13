@@ -18,7 +18,7 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
     const navigate = useNavigate()
 
     const { sort, isInbox, isPrimary, isPromotions, isSocial } = filterBy
-    const { date, subject } = sort
+    const { date, subject, read } = sort
 
     let { currentPage, amountPerPage } = filterBy.page
     const startNum = amountOfMails === 0 ? amountOfMails : currentPage * amountPerPage + 1
@@ -83,8 +83,8 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
             <div className="mail-list-nav">
                 <div className="mail-list-buttons">
                     <i onClick={checkAllMails} className={handleCheckClass()} title="Select All"></i>
-                    <i onClick={() => window.location.reload()} className="fa-solid fa-rotate-right" title="Refresh"></i>
-                    <i onClick={() => unreadAllCheckedMails(checkedMailIDs)} className="fa-regular fa-envelope-open" title="Mark as Read"></i>
+                    <i onClick={() => unreadAllCheckedMails([])} className="fa-solid fa-rotate-right" title="Refresh"></i>
+                    <i onClick={() => checkedMailIDs.length > 0 && unreadAllCheckedMails(checkedMailIDs)} className="fa-regular fa-envelope-open" title="Mark as Read"></i>
                 </div>
                 <div className="mail-sort-container">
                     <div onClick={() => { date === '' || date === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, date: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, date: 1 } }) }}>
@@ -94,6 +94,10 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
                     <div onClick={() => { subject === '' || subject === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, subject: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, subject: 1 } }) }}>
                         <i className={subject === '' || subject === 1 ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
                         <span>Subject</span>
+                    </div>
+                    <div onClick={() => { read === '' || read === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, read: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, read: 1 } }) }}>
+                        <i className={read === '' || read === 1 ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
+                        <span>Read</span>
                     </div>
                 </div>
                 <div className="mail-list-counter">

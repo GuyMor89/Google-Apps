@@ -60,7 +60,7 @@ export function MailSend() {
     }
 
     function sendMail() {
-        if (!draft) return showErrorMsg(`Can't send empty mail`)
+        if (!draft.to) return showErrorMsg(`Can't send empty mail`)
 
         closeEditor()
 
@@ -74,7 +74,7 @@ export function MailSend() {
         if (draft.id) {
             closeEditor()
             mailService.remove(draft.id)
-        }
+        } else closeEditor()
     }
 
     return (
