@@ -7,11 +7,144 @@
 @import 'pages/mail-send.css';
 
 /* Components */
+@import 'cmps/mail-list.css';
 @import 'cmps/mail-preview.css';
 @import 'cmps/mail-filter.css';
 @import 'cmps/mail-reply.css';
 
 
-@media (width > 740px) {
-    
+@media (width < 950px) {
+
+    body {
+        font-size: 0.5em;
+    }
+
+    .mail-container {
+        width: max-content;
+        grid-template-columns: max-content;
+        grid-template-rows: max-content max-content;
+    }
+
+    .mail-header {
+        margin-block-end: 0.5em;
+        width: 400px;
+        height: max-content;
+        grid-template-columns: 1fr;
+    }
+
+    .search-input {
+        width: 400px;
+        margin: 0;
+        height: 30px;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .side-filter {
+        width: 400px;
+        grid-column: 2/3;
+        grid-row: 2/3;
+
+        justify-self: start;
+    }
+
+    .filter-icon-nav {
+        grid-auto-flow: column;
+        margin-block-end: 0.25em;
+
+        justify-self: center;
+    }
+
+    .fa-bars {
+        display: none;
+    }
+
+    .filter-icon-nav-category {
+        width: 32px;
+        margin-inline-end: 0.25em;
+    }
+
+    .filter-icon-nav-category.compose {
+        margin: 0;
+        margin-inline-end: 0.25em;
+    }
+
+    .mail-sort-container>div {
+        border: 1px solid hsl(0, 0%, 86%);
+    }
+
+    .mail-list {
+        padding: 0;
+        width: 400px;
+    }
+
+    .mail-list-nav {
+        margin: 0;
+        margin-block-start: 0.35em;
+        grid-row: 1/2;
+    }
+
+    .mail-list-tabs {
+        grid-row: 1/2;
+        grid-template-columns: repeat(3, 133px);
+    }
+
+    .mail-list-tabs>div {
+        height: 30px;
+    }
+
+    .mail-list-tabs-bar.chosen {
+        height: 2px;
+    }
+
+    .mail-list-buttons>i,
+    .mail-list-counter>i {
+        min-width: 10px;
+    } 
+
+    .mail-preview {
+        grid-auto-flow: row;
+        grid-template-columns: 30px 350px;
+
+        justify-items: start;
+    }
+
+    .mail-preview>h3 {
+        grid-row: 1/2;
+        grid-column: 2/3;
+    }
+
+    .mail-preview>h4 {
+        grid-row: 2/3;
+        grid-column: 2/3;
+
+        margin-inline-start: 0.5em;
+    }
+
+    .mail-preview>i:nth-of-type(1) {
+        grid-row: 1/2;
+        grid-column: 1/2;
+    }
+
+    .mail-preview>i:nth-of-type(2) {
+        grid-row: 2/3;
+        grid-column: 1/2;
+
+    }
+
+    .mail-details {
+        grid-column: 2/3;
+        width: 500px;
+    }
+
+    .mail-list-footer {
+        display: none;
+    }
+
+    .progress,
+    .progress2 {
+        
+    }
 }

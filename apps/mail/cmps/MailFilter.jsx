@@ -48,6 +48,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
 
     return (
         <React.Fragment>
+            {/* <div className="progress2"></div> */}
             <section className="mail-header">
                 <div className="logo" onClick={() => navigate('/mail/')}>
                     <img src="./assets/img/gmail.png"></img>

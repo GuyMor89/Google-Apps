@@ -76,7 +76,7 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
 
     const thereAreMails = mails.length !== 0
 
-    if (isLoading) return <div className="progress" />
+    if (isLoading) return
 
     return (
         <article className="mail-list">
