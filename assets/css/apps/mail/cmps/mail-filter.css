@@ -1,6 +1,7 @@
 .chosen {
     background-color: hsl(218, 87%, 91%);
-    font-family: Roboto-Bold
+    font-family: Roboto !important;
+    font-weight: 900 !important;
 }
 
 .blue {
@@ -34,7 +35,6 @@ input[type="search"] {
     min-height: 2.4em;
 
     font-size: 1.25em;
-    font-family: Roboto-Regular;
 
     background-color: inherit;
     border: none;

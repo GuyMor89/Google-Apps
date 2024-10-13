@@ -1,5 +1,6 @@
 .read {
-    font-family: Roboto-Thin !important;
+    font-family: Roboto !important;
+    font-weight: 300;
     background-color: hsl(215, 68%, 95%) !important;
 }
 
@@ -26,8 +27,6 @@
     border-inline: 1px solid #f2f6fc;
     border-radius: 3px;
     box-shadow: none;
-
-    font-family: Roboto-Regular;
 
     cursor: pointer;
 
@@ -72,18 +71,17 @@
     margin-inline-start: 0.5em;
 
     font-size: 1.25em;
-    font-family: Roboto-Regular;
 }
 
 .mail-preview>h4 {
-    font-family: Roboto-Regular;
     overflow: hidden;
 
     height: 1.3em;
 }
 
 .mail-preview>h4>span {
-    font-family: Roboto-Thin;
+    font-family: Roboto;
+    font-weight: 300;
 }
 
 .data-usage {
