@@ -176,7 +176,7 @@
 .mail-details {
     display: grid;
 
-    /* grid-template-columns: max-content; */
+    grid-template-columns: max-content;
 }
 
 .mail-details-nav-container {
