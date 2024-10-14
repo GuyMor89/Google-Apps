@@ -73,7 +73,6 @@ export function MailIndex() {
             })
     }
 
-
     if (isLoading.first || isLoading.second) return (
         <main className="mail-container">
             <MailFilter filterBy={filterBy} changeFilterBy={changeFilterBy} />

@@ -11,9 +11,18 @@
         1px 1px 5px 0px rgba(0, 0, 0, 0.01);
 }
 
+.mail-list:has(.mail-list-nav.notInbox) {
+    padding-block-start: 1em;
+}
+
 .mail-list-nav {
     margin-block-start: 1.2em;
     color: hsl(0, 0%, 15%);
+}
+
+.mail-list-nav.notInbox {
+    margin: 0;
+    margin-block-end: 1em;
 }
 
 .mail-list-buttons,
@@ -56,7 +65,7 @@
 }
 
 .mail-list-counter>span {
-    font-family: Roboto;
+    font-family: Open Sans;
     font-size: 0.8em;
 
     color: hsl(0, 0%, 40%);
@@ -85,8 +94,8 @@
 
 .mail-sort-container>div>span {
     margin-block-end: 0.1em;
-    font-family: Roboto;
-    font-weight: 600;
+    font-family: Open Sans;
+    font-weight: 700;
 }
 
 .mail-list-tabs-primary,
@@ -124,7 +133,15 @@
 .mail-list-tabs-promotions>span,
 .mail-list-tabs-social>span {
     font-family: Roboto;
-    font-weight: 600;
+    font-weight: 500;
+}
+
+.mail-list-tabs-bar {
+    height: 4px;
+    width: 90%;
+    border-radius: 8px;
+
+    background-color: hsl(0, 0%, 100%);
 }
 
 .mail-list-tabs-bar.chosen {

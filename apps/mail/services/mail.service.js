@@ -25,6 +25,7 @@ function query(filterBy = {}) {
             }
             if (filterBy.isInbox) {
                 mails = mails.filter(mail => !mail.removedAt)
+                mails = mails.filter(mail => !mail.isArchived)
                 mails = mails.filter(mail => mail.to === 'user@gmail.com')
             }
             if (filterBy.isPrimary) mails = mails.filter(mail => mail.isPrimary)

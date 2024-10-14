@@ -32,8 +32,6 @@ export function MailReply({ mail, currentAction, setCurrentAction }) {
         setDraft(newDraft)
     }
 
-    console.log(draft)
-
     function sendReply() {
         if (!draft.to) return showErrorMsg(`Please enter a valid address`)
         if (!draft.body) return showErrorMsg(`Can't send empty mail`)

@@ -32,7 +32,7 @@ export function MailDetails({ mailID }) {
 
     function moveToTrash() {
         setIsLoading({ ...isLoading, first: true })
-        showSuccessMsg('E-Mail Moved to Trash')
+        showSuccessMsg('Mail Moved to Trash')
         mailService.save({ ...mail, removedAt: Date.now() })
             .then(() => {
                 navigate(`/mail/${params.category}`)
@@ -41,11 +41,29 @@ export function MailDetails({ mailID }) {
 
     function moveToInbox() {
         setIsLoading({ ...isLoading, first: true })
-        showSuccessMsg('E-Mail Moved to Inbox')
+        showSuccessMsg('Mail Moved to Inbox')
         mailService.save({ ...mail, removedAt: null })
             .then(() => {
                 navigate(`/mail/${params.category}`)
             })
+    }
+
+    function handleArchive() {
+        if (mail.isArchived) {
+            setIsLoading({ ...isLoading, first: true })
+            showSuccessMsg('Mail Archived')
+            mailService.save({ ...mail, isArchived: false })
+                .then(() => {
+                    navigate(`/mail/${params.category}`)
+                })
+        } else if (!mail.isArchived) {
+            setIsLoading({ ...isLoading, first: true })
+            showSuccessMsg('Mail Removed from Archive')
+            mailService.save({ ...mail, isArchived: true })
+                .then(() => {
+                    navigate(`/mail/${params.category}`)
+                })
+        }
     }
 
     function handleUnread() {
@@ -61,10 +79,18 @@ export function MailDetails({ mailID }) {
         setCurrentAction({ isReplying: false, isForwarding: false })
         setTimeout(() => {
             type === 'reply' ?
-            setCurrentAction({ isReplying: true, isForwarding: false })
-            :
-            setCurrentAction({ isReplying: false, isForwarding: true })    
-        }, 0);  
+                setCurrentAction({ isReplying: true, isForwarding: false })
+                :
+                setCurrentAction({ isReplying: false, isForwarding: true })
+        }, 0);
+    }
+
+    function deleteMail() {
+        mailService.remove(mail.id)
+            .then(() => {
+                showSuccessMsg('Mail Deleted Successfully')
+                navigate(`/mail/${params.category}`)
+            })
     }
 
     if (isLoading.first) return <div className="progress" />
@@ -72,14 +98,15 @@ export function MailDetails({ mailID }) {
 
     const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
     const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(sentAt)
-    
+
     return (
         <section className="mail-details">
             <article className="mail-details-nav-container">
                 <div className="mail-details-nav">
                     <i onClick={() => navigate(`/mail/${params.category}`)} ref={topRef} tabIndex="0" className="fa-solid fa-arrow-left" aria-hidden={false}></i>
-                    <i className="fa-regular fa-folder-closed"></i>
-                    <i onClick={params.category === 'trash' ? moveToInbox : moveToTrash} className={params.category === 'trash' ? "fa-solid fa-trash-can-arrow-up" : "fa-regular fa-trash-can"}></i>
+                    {params.category === 'trash' ? <div className="delete-forever" onClick={deleteMail}>Delete Forever</div> : ''}
+                    <i className={mail.isArchived ? "fa-regular fa-folder-open" : "fa-regular fa-folder-closed"} onClick={handleArchive} title={mail.isArchived ? "Unarchive" : "Archive"}></i>
+                    <i onClick={params.category === 'trash' ? moveToInbox : moveToTrash} className={params.category === 'trash' ? "fa-solid fa-trash-can-arrow-up" : "fa-regular fa-trash-can"} title="Move to Trash"></i>
                     <i onClick={handleUnread} className="fa-solid fa-envelope-circle-check" title="Mark Unread"></i>
                 </div>
             </article>

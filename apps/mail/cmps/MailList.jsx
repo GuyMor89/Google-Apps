@@ -27,7 +27,7 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
     const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(lastAction)
 
     useEffect(() => {
-        setIsLoading(true)
+        // setIsLoading(true)
     }, [params.category])
 
     useEffect(() => {
@@ -76,11 +76,11 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
 
     const thereAreMails = mails.length !== 0
 
-    if (isLoading) return <div className="progress" />
+    // if (isLoading) return <div className="progress" />
 
     return (
         <article className="mail-list">
-            <div className="mail-list-nav">
+            <div className={params.category === 'inbox' ? "mail-list-nav" : 'mail-list-nav notInbox'}>
                 <div className="mail-list-buttons">
                     <i onClick={checkAllMails} className={handleCheckClass()} title="Select All"></i>
                     <i onClick={() => unreadAllCheckedMails([])} className="fa-solid fa-rotate-right" title="Refresh"></i>
@@ -130,7 +130,7 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
                 thereAreMails
                     ?
                     mails.map(mail =>
-                        <MailPreview key={mail.id} mail={mail} checkedMailIDs={checkedMailIDs} setCheckedMailIDs={setCheckedMailIDs} />)
+                        <MailPreview key={mail.id} mail={mail} checkedMailIDs={checkedMailIDs} setCheckedMailIDs={setCheckedMailIDs} unreadAllCheckedMails={unreadAllCheckedMails} />)
                     :
                     noMailMessage()
             }

@@ -1,20 +1,22 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
 
-export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs }) {
+export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs, unreadAllCheckedMails }) {
 
     const [starred, setStarred] = useState(mail.isStarred)
     const [checked, setChecked] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
+    const [isLoading, setIsLoading] = useState({ first: false, second: false })
 
     const hasMounted = useRef(false)
     const navigate = useNavigate()
     const params = useParams()
 
-    const { id, name, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
+    const { id, name, createdAt, subject, body, isRead, isStarred, isArchived, sentAt, removedAt, from, to } = mail
 
     useEffect(() => {
         if (checkedMailIDs.find(checkedIDs => checkedIDs === mail.id)) setChecked(true)
@@ -65,7 +67,52 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs }) {
             }
             else return mediumDate
         }
+    }
 
+    function handleArchive(event) {
+        event.stopPropagation()
+
+        if (mail.isArchived) {
+            showSuccessMsg('Mail Archived')
+            mailService.save({ ...mail, isArchived: false })
+                .then(() => {
+                    unreadAllCheckedMails([])
+                })
+        } else if (!mail.isArchived) {
+            showSuccessMsg('Mail Removed from Archive')
+            mailService.save({ ...mail, isArchived: true })
+                .then(() => {
+                    unreadAllCheckedMails([])
+                })
+        }
+    }
+
+    function handleUnread(event) {
+        event.stopPropagation()
+
+        if (mail.isRead) {
+            showSuccessMsg('Mail Marked as Unread')
+            mailService.save({ ...mail, isRead: false })
+                .then(() => {
+                    unreadAllCheckedMails([])
+                })
+        } else if (!mail.isRead) {
+            showSuccessMsg('Mail Marked as Read')
+            mailService.save({ ...mail, isRead: true })
+                .then(() => {
+                    unreadAllCheckedMails([])
+                })
+        }
+    }
+
+    function moveToTrash(event) {
+        event.stopPropagation()
+
+        showSuccessMsg('Mail Moved to Trash')
+        mailService.save({ ...mail, removedAt: Date.now() })
+            .then(() => {
+                unreadAllCheckedMails([])
+            })
     }
 
     return (
@@ -75,6 +122,11 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs }) {
             <h3 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{params.category === 'sent' ? `To: ${to}` : name}</h3>
             <h4 className={`${isRead ? 'read' : ''} ${checked ? 'checked' : ''}`}>{subject} - <span>{body}</span></h4>
             <h3>{handleDateFormatting()}</h3>
+            <div className={isRead ? "preview-buttons read" : "preview-buttons"}>
+                <i onClick={handleArchive} className={isArchived ? "fa-regular fa-folder-open" : "fa-regular fa-folder-closed"} title={isArchived ? "Unarchive" : "Archive"}></i>
+                <i onClick={moveToTrash} className="fa-regular fa-trash-can" title="Move to Trash"></i>
+                <i onClick={handleUnread} className={isRead ? "fa-solid fa-envelope-circle-check" : " fa-regular fa-envelope-open"} title={isRead ? "Mark Unread" : "Mark as Read"}></i>
+            </div>
         </div>
     )
 }
