@@ -15,7 +15,7 @@ export function Home() {
                 <div id="gmail-icon" onClick={() => navigate('/mail')}>
                     <img src="./assets/img/icon.png"></img>
                 </div>
-                <div id="books-icon" onClick={() => navigate('')}>
+                <div id="books-icon" onClick={() => navigate('/books')}>
                     <img src="./assets/img/books.png"></img>
                 </div>
                 <div id="youtube-icon" onClick={() => navigate('/wikitube')}>
