@@ -43,6 +43,7 @@ function RedirectToMissBooks() {
         <iframe
             src="./apps/books/index.html"
             style={{ width: '100%', height: '100vh', border: 'none' }}
+            title="Static Page"
         ></iframe>
     </div>
 }
