@@ -96,7 +96,7 @@ export function MailDetails({ mailID }) {
     if (isLoading.first) return <div className="progress" />
     if (isLoading.second) return <div className="progress2" />
 
-    const { id, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
+    const { id, name, createdAt, subject, body, isRead, isStarred, sentAt, removedAt, from, to } = mail
     const { shortDate, shortHour, formattedDate, relativeTime } = utilService.formatDate(sentAt)
 
     return (
@@ -115,7 +115,7 @@ export function MailDetails({ mailID }) {
                 <div className="user-image">
                     <img src="./assets/img/user.png"></img>
                 </div>
-                <div className="mail-details-from">{from}</div>
+                <div className="mail-details-from">{name} ({from})</div>
                 <div className="mail-details-to">to: {to}</div>
                 <div className="mail-details-time">{formattedDate} ({relativeTime})</div>
                 <pre className="mail-details-body">{body}</pre>

@@ -1,0 +1,85 @@
+i, div {
+    position: relative;
+}
+
+i::after,
+div::after {
+    padding: 0.25em 0.4em;
+
+    position: absolute;
+    bottom: -35px;
+    left: -55px;
+
+    width: max-content;
+    height: fit-content;
+
+    font-size: 0.75em;
+    font-family: Lato;
+    border: 2px solid hsl(0, 0%, 80%);
+    background-color: hsla(0, 0%, 0%, 0.707);
+    color: white;
+    border-radius: 8px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease
+}
+
+i:hover::after,
+div:hover::after {
+    opacity: 1;
+    transition-delay: 750ms
+}
+
+i::after,
+div::after {
+    transition: opacity 0.3s ease-out;
+    transition-delay: 0s;
+}
+
+#Select-All::after {
+    content: 'Select All';
+    bottom: -35px;
+    left: -20px;
+}
+
+#Refresh::after {
+    content: 'Refresh';
+    bottom: -35px;
+    left: -18px;
+    font-weight: 400;
+}
+
+#Mark-All-as-Read::after {
+    content: 'Mark All as Read';
+}
+
+#Move-All-to-Trash::after {
+    content: 'Move All to Trash';
+}
+
+#gmail-icon::after {
+    content: 'GMail';
+    bottom: -70px;
+    left: 31px;
+
+    font-size: 1.5em;
+}
+
+#books-icon::after {
+    content: 'Books';
+    bottom: -70px;
+    left: 0px;
+
+    font-size: 1.9em;
+}
+
+#youtube-icon::after {
+    content: 'WikiTube';
+    bottom: -70px;
+    left: -8px;
+
+    font-size: 1.5em;
+}

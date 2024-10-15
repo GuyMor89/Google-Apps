@@ -326,3 +326,16 @@
     justify-self: end;
     align-self: center;
 }
+
+footer {
+    display: grid;
+    grid-auto-flow: column;
+  
+    justify-items: center;
+    align-items: center;
+  }
+  
+  footer>div {
+    display: grid;
+    grid-auto-flow: column;
+  }

@@ -1,8 +1,7 @@
 footer {
     margin-block-start: 1em;
-    padding-block-start: 0.5em;
 
-    height: 5em;
+    height: 2.5em;
     width: 100%;
 
     font-size: 1.1em;
@@ -10,7 +9,8 @@ footer {
     line-height: 1;
     font-weight: 600;
 
-    background-color: hsl(101, 8%, 60%);
+    background-color: hsl(0, 0%, 100%);
+    border-block-start: 2px solid hsl(0, 0%, 90%);
     text-align: center;
 }
 

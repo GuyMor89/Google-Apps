@@ -1,6 +1,7 @@
 .mail-container {
     position: relative;
     height: max-content;
+    height: calc(100vh - 45px);
     background-color: hsl(215, 68%, 97%);
 }
 
@@ -28,6 +29,10 @@
 .expanded.compose {
     margin: 0 0.25em;
     margin-block-end: 0.5em;
+}
+
+.chosen h3 {
+    font-weight: 700 !important;
 }
 
 
@@ -81,6 +86,10 @@
     margin-inline-start: 0.1em;
 }
 
+.filter-icon-nav-category.expanded ~ .fa-bars {
+    background-color: rebeccapurple;
+}
+
 .filter-icon-nav-category>h3,
 .filter-icon-nav-category>span {
     font-size: 0.9em;
@@ -120,13 +129,18 @@
     background-color: #c2e7ff;
 }
 
+.compose>h3 {
+    font-family: Roboto !important;
+    font-weight: 600 !important;
+}
+
 .compose.expanded {
     padding-inline-start: 0.5em;
     padding-block: 0.9em;
 
     width: 160px !important;
 
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
 .compose:hover {

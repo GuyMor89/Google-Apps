@@ -6,7 +6,7 @@ import { MailPreview } from "../cmps/MailPreview.jsx"
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
 
-export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAllCheckedMails }) {
+export function MailList({ mails, filterBy, setFilterBy, amountOfMails, changeAllCheckedMails }) {
 
     const [noMailType, setNoMailType] = useState(null)
     const [lastAction, setLastAction] = useState(Date.now())
@@ -82,9 +82,10 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
         <article className="mail-list">
             <div className={params.category === 'inbox' ? "mail-list-nav" : 'mail-list-nav notInbox'}>
                 <div className="mail-list-buttons">
-                    <i onClick={checkAllMails} className={handleCheckClass()} title="Select All"></i>
-                    <i onClick={() => unreadAllCheckedMails([])} className="fa-solid fa-rotate-right" title="Refresh"></i>
-                    <i onClick={() => checkedMailIDs.length > 0 && unreadAllCheckedMails(checkedMailIDs)} className="fa-regular fa-envelope-open" title="Mark as Read"></i>
+                    <i onClick={checkAllMails} className={handleCheckClass()} id="Select-All"></i>
+                    <i onClick={() => changeAllCheckedMails([])} className="fa-solid fa-rotate-right" id="Refresh"></i>
+                    <i onClick={() => checkedMailIDs.length > 0 && changeAllCheckedMails(checkedMailIDs, 'read')} className="fa-regular fa-envelope-open" id="Mark-All-as-Read"></i>
+                    <i onClick={() => checkedMailIDs.length > 0 && changeAllCheckedMails(checkedMailIDs, 'trash')} className="fa-regular fa-trash-can" id="Move-All-to-Trash"></i>
                 </div>
                 <div className="mail-sort-container">
                     <div onClick={() => { date === '' || date === 1 ? setFilterBy({ ...filterBy, sort: { ...sort, date: -1 } }) : setFilterBy({ ...filterBy, sort: { ...sort, date: 1 } }) }}>
@@ -130,7 +131,7 @@ export function MailList({ mails, filterBy, setFilterBy, amountOfMails, unreadAl
                 thereAreMails
                     ?
                     mails.map(mail =>
-                        <MailPreview key={mail.id} mail={mail} checkedMailIDs={checkedMailIDs} setCheckedMailIDs={setCheckedMailIDs} unreadAllCheckedMails={unreadAllCheckedMails} />)
+                        <MailPreview key={mail.id} mail={mail} checkedMailIDs={checkedMailIDs} setCheckedMailIDs={setCheckedMailIDs} changeAllCheckedMails={changeAllCheckedMails} />)
                     :
                     noMailMessage()
             }

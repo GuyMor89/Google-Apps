@@ -5,7 +5,7 @@ import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.servic
 const { useState, useEffect, useRef } = React
 const { useNavigate, Outlet, useLocation, useSearchParams, useParams } = ReactRouterDOM
 
-export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs, unreadAllCheckedMails }) {
+export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs, changeAllCheckedMails }) {
 
     const [starred, setStarred] = useState(mail.isStarred)
     const [checked, setChecked] = useState(false)
@@ -76,13 +76,13 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs, unreadAll
             showSuccessMsg('Mail Archived')
             mailService.save({ ...mail, isArchived: false })
                 .then(() => {
-                    unreadAllCheckedMails([])
+                    changeAllCheckedMails([])
                 })
         } else if (!mail.isArchived) {
             showSuccessMsg('Mail Removed from Archive')
             mailService.save({ ...mail, isArchived: true })
                 .then(() => {
-                    unreadAllCheckedMails([])
+                    changeAllCheckedMails([])
                 })
         }
     }
@@ -94,13 +94,13 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs, unreadAll
             showSuccessMsg('Mail Marked as Unread')
             mailService.save({ ...mail, isRead: false })
                 .then(() => {
-                    unreadAllCheckedMails([])
+                    changeAllCheckedMails([])
                 })
         } else if (!mail.isRead) {
             showSuccessMsg('Mail Marked as Read')
             mailService.save({ ...mail, isRead: true })
                 .then(() => {
-                    unreadAllCheckedMails([])
+                    changeAllCheckedMails([])
                 })
         }
     }
@@ -111,7 +111,7 @@ export function MailPreview({ mail, checkedMailIDs, setCheckedMailIDs, unreadAll
         showSuccessMsg('Mail Moved to Trash')
         mailService.save({ ...mail, removedAt: Date.now() })
             .then(() => {
-                unreadAllCheckedMails([])
+                changeAllCheckedMails([])
             })
     }
 

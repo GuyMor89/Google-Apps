@@ -20,7 +20,7 @@
     }
 
     .mail-container {
-        padding-inline-start: 1em;
+        padding-inline-start: 0.75em;
         width: max-content;
         grid-template-columns: max-content;
         grid-template-rows: max-content max-content;
@@ -94,6 +94,7 @@
 
     .mail-list {
         padding: 0;
+        padding-block-start: 0.25em;
         max-width: 380px;
     }
 
@@ -124,6 +125,7 @@
 
     .mail-list-buttons>i,
     .mail-list-counter>i {
+        padding: 0.25em;
         min-width: 10px;
     }
 

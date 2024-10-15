@@ -9,6 +9,7 @@
 @import './basics/modal.css';
 @import './basics/footer.css';
 @import './basics/layout.css';
+@import './basics/afters.css';
 
 /* Pages */
 @import './pages/home.css';
@@ -21,3 +22,19 @@
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
+
+@media (width < 950px) {
+    .page-header {
+        font-size: 6em;
+    }
+
+    .app-container {
+        width: 200px;
+        border-radius: 8px;
+    }
+
+    .gsc-input {
+        width: 300px;
+        height: 20px;
+    }
+}

@@ -1,5 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
@@ -48,18 +49,25 @@ export function MailIndex() {
 
     function changeCategoryByRouteParams() {
         if (params.category === 'inbox' && filterBy.isInbox !== true) setFilterBy(mailService.getDefaultFilter)
-        if (params.category === 'starred' && filterBy.isStarred !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: ''}, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: true, isSent: false, isDraft: false, isTrash: false, all: false })
+        if (params.category === 'starred' && filterBy.isStarred !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: true, isSent: false, isDraft: false, isTrash: false, all: false })
         if (params.category === 'sent' && filterBy.isSent !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: true, isDraft: false, isTrash: false, all: false })
         if (params.category === 'draft' && filterBy.isDraft !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: true, isTrash: false, all: false })
         if (params.category === 'trash' && filterBy.isTrash !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: true, all: false })
         if (params.category === 'all' && filterBy.all !== true) setFilterBy({ ...filterBy, sort: { date: '', subject: '', read: '' }, isInbox: false, isPrimary: false, isPromotions: false, isSocial: false, isStarred: false, isSent: false, isDraft: false, isTrash: false, all: true })
     }
 
-    function unreadAllCheckedMails(checkedMailIDs) {
-        setIsLoading({first: true, second: false} )
+    function changeAllCheckedMails(checkedMailIDs, type = 'read') {
+        setIsLoading({ first: true, second: false })
         const unreadMailsPromises = checkedMailIDs.map(id => {
             const mail = mails.find(mail => mail.id === id)
-            return mailService.save({ ...mail, isRead: true })
+            if (type === 'read') {
+                showSuccessMsg(`${checkedMailIDs.length} Mails marked as read`)
+                return mailService.save({ ...mail, isRead: true })
+            }
+            if (type === 'trash') {
+                showSuccessMsg(`${checkedMailIDs.length} Mails moved to trash`)
+                return mailService.save({ ...mail, removedAt: Date.now() })
+            }
         })
 
         Promise.all(unreadMailsPromises)
@@ -84,7 +92,7 @@ export function MailIndex() {
     return (
         <main className="mail-container">
             <MailFilter filterBy={filterBy} changeFilterBy={changeFilterBy} />
-            {params.mailID ? <MailDetails mailID={params.mailID} /> : <MailList mails={mails} filterBy={filterBy} setFilterBy={setFilterBy} amountOfMails={amountOfMails} unreadAllCheckedMails={unreadAllCheckedMails} />}
+            {params.mailID ? <MailDetails mailID={params.mailID} /> : <MailList mails={mails} filterBy={filterBy} setFilterBy={setFilterBy} amountOfMails={amountOfMails} changeAllCheckedMails={changeAllCheckedMails} />}
             <MailSend />
         </main>
     )

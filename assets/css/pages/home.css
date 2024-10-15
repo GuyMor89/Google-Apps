@@ -1,1 +1,123 @@
- /* home */
+.home {
+    display: grid;
+}
+
+.page-overlay {
+    display: grid;
+
+    grid-template-rows:  1fr max-content 1fr;
+
+    justify-items: center;
+    align-items: start;
+
+    min-height: calc(100vh - 6.7em);
+}
+
+.page-header {
+    align-self: end;
+    padding: 0.25em 0;
+
+    width: 100%;
+
+    font-size: 8em;
+    font-family: Noto Sans;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(4, 45, 81);
+
+    /* border-block-end: 2px solid hsl(0, 0%, 90%); */
+    /* border-radius: 20px; */
+    /* background-color: hsla(0, 0%, 0%, 0.495); */
+
+    /* text-shadow: 4px 4px 0px rgb(255, 255, 255); */
+
+    /* -webkit-text-stroke: 3px hsl(0, 0%, 100%, 0.4); */
+
+    /* text-shadow:
+        10px 10px 35px #ffffff,
+        -10px -10px 35px #ffffff,
+        10px -10px 35px #ffffff,
+        -10px 10px 35px #ffffff,
+        10px 10px 35px #ffffff; */
+}
+
+.custom-search {
+    margin-block-end: 1.5em;
+
+}
+
+.custom-search * {
+    border-radius: 20px;
+
+}
+
+.gsc-control-cse.gsc-control-cse-en {
+    background-color: hsl(215, 68%, 94%);
+    border: none;
+}
+
+.gsc-control-wrapper-cse {
+    background-color: hsl(215, 68%, 94%);
+}
+
+.gsc-input {
+    width: 600px;
+    height: 40px;
+    font-size: 2em;
+}
+
+.gsc-search-box {
+    padding: 0 1em;
+    font-size: 2em;
+}
+
+.gsc-search-button {
+    display: none;
+}
+
+.app-container {
+    padding: 0.3em;
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-auto-flow: column;
+    gap: 1em;
+
+    width: 400px;
+
+    background-color: hsl(0, 0%, 98%);
+    border: 2px solid hsl(0, 0%, 90%);
+    border-radius: 20px;
+}
+
+.app-container>div {
+    padding-inline-start: 1.5em;
+
+    width: fit-content;
+    height: fit-content;
+
+    cursor: pointer;
+}
+
+.app-container>div:nth-of-type(2) {
+    padding-inline-start: 0;
+
+    scale: 0.8;
+}
+
+.app-container>div:nth-of-type(3) {
+    padding-inline-start: 0;
+    padding-inline-end: 1.5em;
+}
+
+.app-container img {
+    width: 100%;
+    height: 100%;
+
+    transition: scale 300ms;
+}
+
+.app-container img:hover {
+    scale: 1.15;
+}

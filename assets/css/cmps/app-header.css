@@ -1,16 +1,33 @@
 header {
-    background: lightcyan;
-    border-bottom: 2px solid white;
+    background: rgb(255, 255, 255);
+    border-block-end: 2px solid hsl(0, 0%, 90%);
 }
 
 .app-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
+    padding: 8px 0;
+
+    display: grid;
+    grid-auto-flow: column;
+
+    justify-items: center;
+
+    width: 100%;
 }
 
 nav a {
-    margin: .5em;
+    padding: 0.2em 0.7em;
+
+    font-size: 1.25em;
+    font-family: Open Sans;
+    font-weight: 500;
+
+    border-radius: 20px;
+
+    transition: background-color 200ms;
+}
+
+nav a:hover {
+    background-color: hsl(0, 0%, 93%);
 }
 
 nav a:active {
@@ -18,7 +35,5 @@ nav a:active {
 }
 
 nav a.active {
-    color: darkblue;
-    font-weight: bold;
-    text-decoration: overline;
+    font-weight: 700;
 }

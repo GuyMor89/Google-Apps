@@ -48,7 +48,6 @@ export function MailFilter({ filterBy, changeFilterBy }) {
 
     return (
         <React.Fragment>
-            {/* <div className="progress2"></div> */}
             <section className="mail-header">
                 <div className="logo" onClick={() => navigate('/mail/')}>
                     <img src="./assets/img/gmail.png"></img>
@@ -61,7 +60,7 @@ export function MailFilter({ filterBy, changeFilterBy }) {
             <section className="side-filter">
                 <article className="filter-icon-nav">
                     <i className="fa-solid fa-bars" onClick={() => setMenuOpen(!menuOpen)}></i>
-                    <div className={`${handleSideFilterClasses('compose')} compose`} onClick={() => setSearchParams({ compose: '' })} title="Compose">
+                    <div className={`${handleSideFilterClasses('compose')} compose`} onClick={() => setSearchParams({ compose: '' })} id="Compose">
                         <i className="fa-solid fa-pencil"></i>
                         {menuOpen && <h3>Compose</h3>}
                     </div>
