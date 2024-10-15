@@ -21,8 +21,8 @@ export function App() {
                 <Route path="/mail" element={<Navigate to="/mail/inbox" />} />
                 <Route path="/mail/:category" element={<MailIndex />} />
                 <Route path="/mail/:category/:mailID" element={<MailIndex />} />
-                <Route path="/books" element={<RedirectToMissBooks />} />
-                <Route path="/wikitube" element={<RedirectToWikitube />} />
+                {/* <Route path="/books" element={<RedirectToMissBooks />} />
+                <Route path="/wikitube" element={<RedirectToWikitube />} /> */}
             </Routes>
             <UserMsg />
         </section>
