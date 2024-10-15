@@ -1,0 +1,17 @@
+.not-found-container {
+
+}
+
+.not-found {
+    padding-block: 0.5em;
+    padding-inline: 1em;
+
+    text-align: center;
+    font-size: 1.25em;
+
+    width: fit-content;
+}
+
+.not-found>h2 {
+    font-family: Youtube-Regular;
+}

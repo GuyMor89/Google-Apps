@@ -1,0 +1,55 @@
+button {
+    padding: 0.4em 0.6em;
+
+    background-color: hsl(326, 37%, 94%);
+    border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 5px;   
+
+    font-size: 1.1em;
+
+    transition: background-color 300ms, border 1s;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: hsl(330, 37%, 88%);
+    border: 2px solid hsl(0, 0%, 60%);
+}
+
+button:active {
+    background-color: hsl(330, 37%, 94%);
+    box-shadow: 1px 1px 2px 5px hsl(0, 0%, 100%);
+}
+
+
+input[type="range"] {
+    padding: 0;
+    margin: 0.5em;
+    appearance: none;
+    height: 0px;
+    border: none;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    /* width: 100%; */
+    padding: 0;
+    height: 13px;
+    cursor: pointer;
+    background: var(--clr1);
+    border-radius: 5px;
+    margin-block-start: 3px;
+
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #333;
+    margin-block-start: -5px;
+}

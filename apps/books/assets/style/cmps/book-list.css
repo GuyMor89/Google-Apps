@@ -1,0 +1,16 @@
+.book-list {
+    padding: 1em;
+
+    background-color: hsl(0, 0%, 98%);
+    border: 2px solid hsl(0, 0%, 90%);
+    border-radius: 5px;
+}
+
+.empty-books>h2 {
+    font-family: Youtube-Regular;
+    text-align: center;
+}
+
+.empty-books>button {
+    margin-block-end: 1em;
+}

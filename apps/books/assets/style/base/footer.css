@@ -1,0 +1,44 @@
+footer {
+    margin-block-start: 1em;
+    padding-block-start: 0.5em;
+
+    height: 5em;
+    width: 100%;
+
+    font-size: 1.1em;
+    font-family: Lato-Regular;
+    line-height: 1;
+    font-weight: 600;
+
+    background-color: hsl(101, 8%, 60%);
+    text-align: center;
+}
+
+footer>div i {
+    font-size: 1.3em;
+    line-height: 1;
+}
+
+footer>div>div {
+    position: relative;
+}
+
+footer>div>div>span:nth-of-type(2) {
+    position: absolute;
+    top: -0.1em;
+    right: -1.4em;
+}
+
+footer>div>span:first-of-type {
+    margin-inline-start: 2em;
+
+    font-family: Youtube-Regular;
+}
+
+footer>div>span:last-of-type {
+    margin-inline-start: 1em;
+
+    font-family: Edu-Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1;
+    font-weight: 300;
+}

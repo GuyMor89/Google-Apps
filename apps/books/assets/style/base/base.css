@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  color: var(--gray3);
+  font-family: Lato-Regular;
+}
+
+h1 {
+  font-size: 2em;
+  margin: .25em 0 .25em;
+  color: hsl(0, 0%, 90%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: .5em 0 .5em;
+  font-family: 'Edu VIC WA NT Beginner', cursive;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+  cursor: pointer;
+  color: white;
+
+  transition: color 300ms;
+}
+
+a:hover {
+  color: hsl(0, 0%, 80%);
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Dont stretch my Media */
+img,
+embed,
+video,
+object {
+  max-width: 100%
+}
+
+/* Simple and useful CSS Debugging Technique */
+.debug * {
+  outline: 1px solid gold
+}

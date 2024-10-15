@@ -1,0 +1,62 @@
+header {
+    margin-block-start: 0.5em;
+    margin-block-end: 1em;
+
+    width: 100%;
+
+    background-color: rgb(217, 217, 225);
+
+    box-shadow:
+        0px 1px 5px 0px rgba(0, 0, 0, 0.35);
+
+    z-index: 5;
+}
+
+.sub-header {
+    width: 1034px;
+}
+
+.logo {
+    padding-block: 0.1em;
+    padding-inline: 0.4em;
+
+    font-size: 3em;
+    font-weight: 500;
+    font-family: Youtube-Regular;
+    line-height: 1;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: text-shadow 500ms;
+}
+
+.logo:focus {
+    outline: none;
+}
+
+.logo>span {
+    color: rgb(255, 23, 23);
+}
+
+.logo:hover {
+    text-shadow: 4px 4px 0px rgb(255, 255, 255);
+
+}
+
+.nav-container>div {
+    padding-inline: 1em;
+    padding-block: 0.75em;
+
+    font-size: 1.5em;
+
+    height: fit-content;
+
+    cursor: pointer;
+
+    transition: background-color 600ms;
+}
+
+.nav-container>div:hover {
+    background-color: rgb(245, 245, 245);
+}

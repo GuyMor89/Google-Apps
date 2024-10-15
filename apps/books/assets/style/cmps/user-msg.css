@@ -1,0 +1,32 @@
+.user-msg {
+    position: fixed;
+
+    padding: 0.5em 0.75em;
+    padding-block-end: 0.7em;
+
+    top: 0.5em;
+    right: 50%;
+    transform: translateX(50%);
+
+    background-color: lightgray;
+    border: 2px solid hsl(0, 0%, 40%);
+    border-radius: 5px;
+    
+    font-size: 1.1em;
+
+    opacity: 95%;
+}
+
+.user-msg>h4 {
+    margin: 0;
+    font-family: Youtube-Regular;
+    font-weight: bold;
+}
+
+.user-msg.success {
+    background-color: rgb(125, 187, 125);
+}
+
+.user-msg.error {
+    background-color: var(--clr2);
+}

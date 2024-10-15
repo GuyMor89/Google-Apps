@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+@font-face {
+    font-family: Lato-Regular;
+    src: url(fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: Eurofurencer;
+    src: url(fonts/Eurofurencer-Regular.ttf);
+}
+
+@font-face {
+    font-family: Noto-Regular;
+    src: url(fonts/Noto-Regular.ttf);
+}
+
+@font-face {
+    font-family: Edu-Regular;
+    src: url(fonts/Edu.ttf);
+}
+
+@font-face {
+    font-family: Playwrite-Regular;
+    src: url(fonts/Playwrite.ttf);
+}
+
+@font-face {
+    font-family: Youtube-Regular;
+    src: url(fonts/YouTube-Regular.otf);
+}

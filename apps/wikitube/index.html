@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WikiTube</title>
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="CSS/main.css">
+</head>
+
+
+<body onload="onInit()">
+
+    <div class="content-wrapper">
+        <main class="main-content">
+            <div class="modal-overlay"></div>
+
+            <div class="modal-container hidden">
+                <!-- <input type="color" name="bgc-input" id="bgc-input"> -->
+            </div>
+
+            <header>
+                <div class="sub-header">
+                    <div class="logo" tabindex="-1">Wiki<span>Tube</span></div>
+                </div>
+            </header>
+
+            <article>
+                <div>
+                    <input type="color" name="bgc-input" id="bgc-input" value="#ffffff">
+                    <label for="bgc-input"><i class="fa-solid fa-palette"></i></label>
+                </div>
+                <!-- <button class="open-modal"><i class="fa-solid fa-palette"></i></button> -->
+                <form>
+                    <input type="text" id="search-input" name="search-input" placeholder="Search" required>
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                </form>
+            </article>
+
+            <section class="main-container">
+                <span>Video Results</span>
+                <article class="videos-container"></article>
+                <article class="player-container">
+                    <iframe width="560" height="315" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <article class="loader player-loader">
+                        <div class="ball ball1"></div>
+                        <div class="ball ball2"></div>
+                        <div class="ball ball3"></div>
+                    </article>
+                </article>
+                <span>Wikipedia Results</span>
+                <article class="wiki-container"></article>
+                <span>Previous Searches
+                    <i class="fa-solid fa-eraser"></i>
+                </span>
+                <article class="saved-searches">
+                    <i>No searches yet..</i>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div></div>
+        <div>Copyright
+            <i class="fa-regular fa-copyright"></i>
+            2024<span data-i18n="footerBy">by Guy Mor</span>
+        </div>
+        <a></a>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/75cbaaf481.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="LIB/jquery-3.7.1.js"></script>
+    <script type="module" src="JS/controller.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-family: 'Lato-Regular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(240 240 240);
+}
+
+.disappear {
+    display: none !important;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.content-wrapper {
+    min-height: calc(100vh - 2.5em);
+}

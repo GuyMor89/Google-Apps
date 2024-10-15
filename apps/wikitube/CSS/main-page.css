@@ -1,0 +1,284 @@
+.main-content {
+    position: relative;
+    background-color: hsl(0, 0%, 94%);
+
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    pointer-events: none;
+    z-index: 10;
+
+    transition: background-color 600ms;
+}
+
+.overlay-on {
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+}
+
+.modal-container {
+    position: absolute;
+
+    padding: 0.75em;
+    margin-inline: 0.75em;
+    margin-block-end: 1em;
+
+    height: fit-content;
+    width: fit-content;
+
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: rgb(243, 243, 243);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+    box-shadow:
+        1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+
+    z-index: 20;
+}
+
+.main-content>article {
+    margin-block-start: 0.25em;
+
+    width: 93%;
+
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.main-content>article>div {
+    position: relative;
+}
+
+.main-content>article>button:first-of-type,
+.main-content>article>div>label {
+    width: 60px;
+}
+
+.main-content>article>div>input:hover + label{
+    background-color: hsl(0, 0%, 98%);
+}
+
+.main-content>article>div>input {
+    position: absolute;
+
+    top: -8px;
+    left: 6px;
+    width: 55px;
+    height: 45px;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+.main-content>article>form>input {
+    padding-inline: 0.5em;
+    padding-block: 0.5em;
+
+    font-size: 0.85em;
+
+    background-color: rgb(250, 250, 250);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+}
+
+.main-content>article button,
+.main-content>article label {
+    margin-inline-start: 0.25em;
+    padding-block: 0.3em;
+    padding-inline: 0.6em;
+
+    font-size: 1em;
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: background-color 300ms;
+}
+
+.main-content>article button:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.main-container {
+    padding: 0.75em;
+    padding-inline: 1.5em;
+    margin-block-end: 1em;
+
+    width: 1000px;
+
+    /* background-color: rgb(243, 243, 243); */
+    /* border: 2px solid rgba(0, 0, 0, 0.258); */
+    /* border-radius: 5px;
+    box-shadow:
+        1px 1px 5px 0px rgba(0, 0, 0, 0.1); */
+}
+
+.main-container>span {
+    font-size: 1.75em;
+    font-weight: 600;
+}
+
+.videos-container,
+.player-container {
+    padding-block: 0.5em;
+    padding-inline: 0;
+    width: 100%;
+    /* min-height: 500px; */
+    /* background-color: rgb(243, 243, 243);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+    box-shadow:
+        1px 1px 5px 0px rgba(0, 0, 0, 0.1); */
+}
+
+.videos-container>div {
+    position: relative;
+
+    width: 320px;
+
+    background-color: hsl(0, 0%, 96%);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+    box-shadow:
+        1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
+
+    transition: background-color 400ms, border 400ms;
+}
+
+.videos-container>div:hover {
+    background-color: hsl(0, 0%, 100%);
+    border: 2px solid rgba(0, 0, 0, 0.500);
+}
+
+.videos-container img {
+    width: 99.1%;
+    /* height: 180px; */
+
+    justify-self: start;
+}
+
+.videos-container>div>a {
+    padding-inline: 0.25em;
+
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.videos-container>div>span {
+    margin-block-end: 0.5em;
+    padding-inline: 0.5em;
+
+    width: 320px;
+
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-container {
+    position: relative;
+
+    width: 100%;
+    padding: 0;
+    padding-block-start: 1em;
+}
+
+.player-container>iframe {
+    width: 100%;
+
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+    box-shadow:
+        1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.main-container>span:not(:first-child) {
+    margin-block-end: 0.25em;
+
+    align-self: end;
+}
+
+.wiki-container {
+    width: 100%;
+    height: fit-content;
+}
+
+.wiki-container>div {
+    position: relative;
+
+    padding-block: 0.5em;
+    padding-inline: 0.75em;
+
+    height: 130px;
+
+    background-color: hsl(0, 0%, 96%);
+    border: 1px solid rgba(0, 0, 0, 0.150);
+    border-radius: 3px;
+    /* box-shadow: */
+    /* 1px 1px 5px 0px rgba(0, 0, 0, 0.1); */
+
+    transition: background-color 400ms, border 400ms;
+}
+
+.wiki-container>div:hover {
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid rgba(0, 0, 0, 0.150);
+}
+
+.wiki-container>div>span {
+    font-size: 1.5em;
+    font-weight: 600;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+.wiki-container>div>p {
+    font-size: 1.15em;
+}
+
+.main-container>span:nth-of-type(3)>i {
+    margin-inline-start: 0.25em;
+    padding-block: 0.3em;
+    padding-inline: 0.4em;
+
+    font-size: 1em;
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgba(0, 0, 0, 0.258);
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: background-color 300ms;
+}
+
+.main-container>span:nth-of-type(3)>i:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.saved-searches {
+    font-size: 1.5em;
+}
+
+.saved-searches>span {
+    margin-inline: 0.25em;
+}
+
+.saved-searches>span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

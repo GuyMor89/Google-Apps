@@ -1,0 +1,60 @@
+.loader-container {
+    position: relative;
+    
+    border: 2px solid hsl(0, 0%, 90%);
+    border-radius: 5px;
+    background-color: hsl(0, 0%, 96%);
+
+    height: 75vh;
+}
+
+.loader {
+    position: absolute;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 51px);
+    justify-content: center;
+    gap: 5px;
+
+    z-index: 10;
+    pointer-events: none
+}
+
+.type-loader {
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ball {
+    height: 47px;
+    width: 47px;
+    background-color: rgba(0, 0, 0, 0.651);
+    border-radius: 50%;
+
+    animation: growAndShrink 1s;
+    animation-iteration-count: infinite;
+}
+
+.ball2 {
+    animation-delay: 333ms;
+}
+
+.ball3 {
+    animation-delay: 666ms;
+}
+
+@keyframes growAndShrink {
+    25% {
+        scale: 1.4;
+    }
+
+    50% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 1;
+    }
+}

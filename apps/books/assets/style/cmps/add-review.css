@@ -1,0 +1,87 @@
+.add-review-container {
+    width: 85%;
+}
+
+.add-review {
+    margin-block-end: 1em;
+    padding: 0.5em 1em;
+
+    /* border: 2px solid hsl(0, 0%, 80%); */
+    border-radius: 5px;
+}
+
+.add-review>h2 {
+    margin-inline-end: 1em;
+    padding-block: 0.25em;
+    padding-inline: 0.5em;
+
+    background-color: hsl(0, 0%, 98%);
+    border: 2px solid hsl(0, 0%, 92%);
+    border-radius: 3px;
+
+    font-family: Lato-Regular;
+    font-weight: 600;
+    font-size: 1.75em;
+    text-align: center;
+}
+
+.add-review>label {
+    margin-inline-end: 1em;
+    padding-block: 0.25em;
+    padding-inline: 0.5em;
+
+    width: 100%;
+    height: 35px;
+
+    font-size: 1.25em;
+    font-weight: 600;
+    text-decoration: underline;
+
+    background-color: hsl(0, 0%, 98%);
+    border: 2px solid hsl(0, 0%, 92%);
+    border-radius: 3px;
+}
+
+.add-review>input {
+    padding-inline-start: 0.5em;
+    padding-block: 0.25em;
+
+    width: 410px;
+
+    font-size: 1.25em;
+    font-family: Youtube-Regular;
+
+    background-color: hsl(0, 0%, 98%);
+    border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 3px;
+
+    outline: none;
+}
+
+.add-review>textarea {
+    padding-inline-start: 0.5em;
+    padding-block: 0.25em;
+
+    min-width: 410px;
+    min-height: 150px;
+
+    max-width: 410px;
+    max-height: 150px;
+
+    font-size: 1.25em;
+    font-family: Youtube-Regular;
+
+    background-color: hsl(0, 0%, 98%);
+    border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 3px;
+
+    outline: none;
+
+    overflow: auto;
+}
+
+.add-review>button {
+    margin-block-start: 0.5em;
+
+    font-size: 1.25em;
+}

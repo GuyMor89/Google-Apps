@@ -1,0 +1,45 @@
+.book-preview {
+    padding-block: 0.4em;
+    padding-inline: 0.6em;
+
+    background-color: hsl(150, 20%, 90%);
+    border: 2px solid hsl(0, 0%, 86%);
+    border-radius: 3px;
+    box-shadow:
+        1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
+
+    transition: background-color 500ms;
+}
+
+.book-preview:hover {
+    background-color: hsl(150, 20%, 96%);
+}
+
+.book-preview>h3 {
+    margin: 0;
+    margin-block-end: 0.5em;
+
+    height: 75px;
+
+    font-family: YouTube-Regular;
+    text-align: center;
+    font-size: 1.25em;
+
+    text-wrap: pretty;
+
+    pointer-events: none;
+}
+
+.book-preview>img {
+    margin-block-end: 0.25em;
+    
+    border: 2px solid hsl(0, 0%, 66%);
+    border-radius: 3px;
+
+    height: 261px;
+    width: 177px;
+
+    pointer-events: none;
+}

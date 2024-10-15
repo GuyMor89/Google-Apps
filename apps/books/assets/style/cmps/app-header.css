@@ -1,0 +1,20 @@
+.app-header {
+  background-color: var(--clr1);
+  color: var(--clr1bg);
+  padding: 0.7em;
+  font-size: 1.2em;
+}
+
+a {
+  margin-inline-end: 0.5em;
+
+  font-size: 1.25em;
+  font-family: Edu-Regular;
+}
+
+.active {
+  font-weight: 500;
+  text-decoration: underline;
+
+  border-radius: 3px;
+}

@@ -1,0 +1,33 @@
+footer {
+    padding-block-start: 0.5em;
+
+    height: 2.3em;
+    width: 100%;
+
+    font-size: 1.1em;
+    font-family: Lato-Regular;
+    line-height: 1;
+    font-weight: 600;
+
+    background-color: rgb(217, 217, 225);
+    text-align: center;
+}
+
+footer select {
+    margin-inline-start: 1em;
+    margin-block-end: 0.5em;
+    width: 100px;
+}
+
+footer>div i {
+    font-size: 1.3em;
+    line-height: 1;
+}
+
+footer>div span {
+    margin-inline-start: 1em;
+
+    font-family: Edu-Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1;
+    font-weight: 300;
+}
