@@ -32,7 +32,7 @@ export function App() {
 function RedirectToWikitube() {
     return <div>
         <iframe
-            src="/apps/wikitube/index.html"
+            src="./apps/wikitube/index.html"
             style={{ width: '100%', height: '100vh', border: 'none' }}
         ></iframe>
     </div>
@@ -41,7 +41,7 @@ function RedirectToWikitube() {
 function RedirectToMissBooks() {
     return <div>
         <iframe
-            src="/apps/books/index.html"
+            src="./apps/books/index.html"
             style={{ width: '100%', height: '100vh', border: 'none' }}
             title="Static Page"
         ></iframe>
